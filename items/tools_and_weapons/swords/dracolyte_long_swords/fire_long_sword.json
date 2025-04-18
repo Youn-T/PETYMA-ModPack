@@ -1,0 +1,96 @@
+{
+	"format_version": "1.20.30",
+	"minecraft:item": {
+		"description": {
+			"identifier": "ck:fire_long_sword",
+			"menu_category": {
+				"category": "equipment",
+				"group": "itemGroup.name.sword"
+			}
+		},
+		"components": {
+			"minecraft:description.menu_category": {
+				"category": "equipment", 
+				"parent": "itemGroup.name.sword"
+			},
+			"minecraft:icon": {
+				"texture": "fire_long_sword"
+			},
+			"minecraft:max_stack_size": 1,
+			"minecraft:hand_equipped": true,
+			"minecraft:durability": {
+				"max_durability": 2200
+			},
+			"minecraft:repairable": {
+				"repair_items": [{
+						"items": ["ck:fire_dracolyte_crystal"],
+						"repair_amount": "query.max_durability"
+					},
+					{
+						"items": ["ck:fire_dracolyte"],
+						"repair_amount": "query.max_durability * 0.25 * 0.2"
+					},
+					{
+						"items": ["ck:fire_long_sword"],
+						"repair_amount": "query.max_durability * 0.75 * 0.2"
+					}
+				]
+			},
+			"minecraft:weapon": {
+				"on_hurt_entity": {
+					"event": "sweep"
+				}
+			},
+			"minecraft:mining_speed": 1.5,
+			"minecraft:damage": 15,
+			"minecraft:enchantable": {
+				"value": 16,
+				"slot": "sword"
+			},
+			"minecraft:can_destroy_in_creative": false,
+			"minecraft:digger": {
+				"use_efficiency": true,
+				"destroy_speeds": [{
+						"block": "minecraft:web",
+						"speed": 15,
+						"on_dig": {
+							"event": "digger"
+						}
+					},
+					{
+						"block": "minecraft:bamboo",
+						"speed": 10,
+						"on_dig": {
+							"event": "digger"
+						}
+					}
+				],
+				"on_dig": {
+					"event": "digger"
+				}
+			}
+		}//,
+		// "events": {
+		// 	"digger": {
+		// 		"damage": {
+		// 			"amount": 1,
+		// 			"type": "durability",
+		// 			"target": "self"
+		// 		}
+		// 	},
+		// 	"sweep": {
+		// 		"damage": {
+		// 			"amount": 1,
+		// 			"type": "durability",
+		// 			"target": "self"
+		// 		},
+		// 		"queue_command": {
+		// 			"command": [
+		// 				"playsound mob.player.attack.sweep @s ~ ~ ~ 10.0"
+		// 			],
+		// 			"target": "holder"
+		// 		}
+		// 	}
+		// }
+	}
+}

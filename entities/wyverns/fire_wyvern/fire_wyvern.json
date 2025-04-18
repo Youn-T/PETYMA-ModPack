@@ -1,0 +1,557 @@
+{
+	"format_version": "1.16.0",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "ck:fire_wyvern",
+			"is_spawnable": true,
+			"is_summonable": true,
+			"is_experimental": false,
+			"scripts": {
+				"animate": [
+					"root"
+				]
+			},
+			"animations": {
+				"root": "controller.animation.pull_player"
+			}
+		},
+		"component_groups": {
+			"roaring": {
+				"minecraft:behavior.knockback_roar": {
+					"priority": 0,
+					"attack_time": 1.96,
+					"cooldown_time": 0.1,
+					"duration": 3.8,
+					"knockback_damage": 0,
+					"knockback_strength": 3,
+					"knockback_range": 4,
+					"knockback_filters": {
+						"all_of": [
+							{
+								"test": "is_family",
+								"subject": "other",
+								"operator": "!=",
+								"value": "fire_wyvern"
+							}
+						]
+					},
+					"on_roar_end": {
+						"event": "ck:target_acquired"
+					}
+				}
+			},
+			"mode_switcher": {
+				"minecraft:target_nearby_sensor": {
+					"inside_range": 4.0,
+					"outside_range": 5.0,
+					"must_see": true,
+					"on_inside_range": {
+						"event": "ck:switch_to_melee",
+						"target": "self"
+					},
+					"on_outside_range": {
+						"event": "ck:switch_to_ranged",
+						"target": "self"
+					}
+				}
+			},
+			"bite_attack": {
+				"minecraft:behavior.look_at_target": {
+					"priority": 0
+				},
+				"minecraft:movement": {
+					"value": 0.25
+				},
+				"minecraft:attack": {
+					"damage": 100 //[30, 45]
+				},
+				"minecraft:behavior.delayed_attack": {
+					"priority": 0,
+					"reach_multiplier": 1.3,
+					"speed_multiplier": 1.5,
+					"attack_duration": 1.0,
+					"hit_delay_pct": 0.5,
+					"track_target": true
+				}
+			},
+			"breath_attack": {
+				"minecraft:behavior.look_at_target": {
+					"priority": 0
+				},
+				"minecraft:movement": {
+					"value": 0.25
+				},
+				"minecraft:shooter": {
+					"def": "petyma:fireball"
+					// "def": "ck:projectiles"
+				},
+				"minecraft:behavior.ranged_attack": {
+					"priority": 0,
+					"burst_shots": 8,
+					"burst_interval": 0.6,
+					"charge_charged_trigger": 1.0,
+					"charge_shoot_trigger": 1.3,
+					"attack_interval_min": 0.1,
+					"attack_interval_max": 0.2,
+					"attack_radius": 64.0,
+					"speed_multiplier": 1.5
+				}
+			},
+			"mob_target": {
+				"minecraft:behavior.nearest_attackable_target": {
+					"priority": 2,
+					"reselect_targets": true,
+					"must_see": true,
+					"scan_interval": 20,
+					"within_radius": 64.0,
+					"must_see_forget_duration": 1.5,
+					"target_search_height": -1,
+					"entity_types": [
+						{
+							"filters": {
+								"all_of": [
+									{
+										"test": "is_family",
+										"subject": "other",
+										"operator": "!=",
+										"value": "fire_wyvern"
+									}
+								]
+							},
+							"max_dist": 64
+						}
+					]
+				}
+			},
+			"dragon_anchor": {
+				"minecraft:is_stackable": {},
+				"minecraft:type_family": {
+					"family": [
+						"fire_wyvern",
+						"attack_1"
+					]
+				},
+				"minecraft:rideable": {
+					"seat_count": 1,
+					"crouching_skip_interact": true,
+					"family_types": [
+						"player",
+						"mob",
+						"monster"
+					],
+					"seats": {
+						"position": [
+							0,
+							-1.9,
+							-1.0
+						],
+						"lock_rider_rotation": 0
+					}
+				},
+				"minecraft:physics": {
+					"has_gravity": false
+				},
+				"minecraft:movement": {
+					"value": 1.8
+				},
+				"minecraft:movement.glide": {
+					"start_speed": 1.2,
+					"speed_when_turning": 1.4
+				},
+				"minecraft:behavior.circle_around_anchor": {
+					"priority": 3,
+					"radius_change": 1.0,
+					"radius_adjustment_chance": 0.004,
+					"height_adjustment_chance": 0.002857,
+					"goal_radius": 1.0,
+					"angle_change": 15.0,
+					"radius_range": [
+						20.0,
+						40.0
+					],
+					"height_offset_range": [
+						-4.0,
+						5.0
+					],
+					"height_above_target_range": [
+						15.0,
+						30.0
+					]
+				},
+				"minecraft:attack": {
+					"damage": 100 //[30,45]
+				},
+				"minecraft:behavior.swoop_attack": {
+					"priority": 1,
+					"damage_reach": 1.2,
+					"speed_multiplier": 1.0,
+					"delay_range": [
+						10.0,
+						20.0
+					]
+				}
+			},
+			"dragon_fly": {
+				"minecraft:type_family": {
+					"family": [
+						"fire_wyvern",
+						"fire_wyvern_fly"
+					]
+				},
+				"minecraft:is_sheared": {},
+				"minecraft:movement.generic": {
+					"max_turn": 15.0
+				},
+				"minecraft:navigation.float": {
+					"can_path_over_water": true,
+					"can_sink": true,
+					"avoid_sun": false,
+					"can_pass_doors": false,
+					"can_open_doors": false,
+					"avoid_water": true,
+					"avoid_portals": true
+				},
+				"minecraft:flying_speed": {
+					"value": 0.005
+				},
+				"minecraft:behavior.float_wander": {
+					"priority": 0,
+					"xz_dist": 15,
+					"y_dist": 3,
+					"y_offset": 0.0
+				},
+				"minecraft:movement": {
+					"value": 0.05
+				},
+				"minecraft:can_fly": {},
+				"minecraft:shooter": {
+					"def": "petyma:fireball"
+				},
+				"minecraft:behavior.ranged_attack": {
+					"priority": 0,
+					"burst_shots": 8,
+					"burst_interval": 0.6,
+					"charge_charged_trigger": 1.0,
+					"charge_shoot_trigger": 1.3,
+					"attack_interval_min": 0.1,
+					"attack_interval_max": 0.2,
+					"attack_radius": 64.0,
+					"speed_multiplier": 1.5
+				}
+			},
+			"dragon_walking": {
+				"minecraft:type_family": {
+					"family": [
+						"fire_wyvern",
+						"fire_wyvern_walk"
+					]
+				},
+				"minecraft:navigation.walk": {
+					"can_path_over_water": true,
+					"avoid_water": true,
+					"avoid_damage_blocks": true
+				},
+				"minecraft:movement": {
+					"value": 0.25
+				},
+				"minecraft:behavior.random_stroll": {
+					"priority": 4
+				},
+				"minecraft:physics": {},
+				"minecraft:movement.basic": {},
+				"minecraft:environment_sensor": {
+					"triggers": [
+						{
+							"filters": {
+								"all_of": [
+									{
+										"test": "in_water"
+									}
+								]
+							},
+							"event": "ck:in_water"
+						}
+					]
+				}
+			},
+			"shift_movement": {
+				"minecraft:timer": {
+					"time": [
+						8,
+						15
+					],
+					"looping": true,
+					"time_down_event": {
+						"event": "ck:shift_movement",
+						"target": "self"
+					}
+				}
+			}
+		},
+		"events": {
+			"minecraft:entity_spawned": {
+				"add": {
+					"component_groups": [
+						"dragon_walking",
+						"mob_target",
+						"breath_attack",
+						"mode_switcher",
+						"shift_movement"
+					]
+				}
+			},
+			"ck:switch_to_melee": {
+				"remove": {
+					"component_groups": [
+						"breath_attack"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"bite_attack"
+					]
+				}
+			},
+			"ck:in_water": {
+				"remove": {
+					"component_groups": [
+						"dragon_fly",
+						"dragon_walking",
+						"breath_attack",
+						"bite_attack",
+						"mode_switcher"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"dragon_anchor"
+					]
+				}
+			},
+			"ck:switch_to_ranged": {
+				"remove": {
+					"component_groups": [
+						"bite_attack"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"breath_attack"
+					]
+				}
+			},
+			"ck:shift_movement": {
+				"sequence": [
+					{
+						"randomize": [
+							{
+								"weight": 20,
+								"queue_command": {
+									"command": [
+										"say @a dragon_anchor"
+									]
+								},
+								"remove": {
+									"component_groups": [
+										"dragon_fly",
+										"dragon_walking",
+										"breath_attack",
+										"bite_attack",
+										"mode_switcher"
+									]
+								},
+								"add": {
+									"component_groups": [
+										"dragon_anchor"
+									]
+								}
+							},
+							{ // revient au même grâce au mode switcher
+								"weight": 20,
+								"queue_command": {
+									"command": [
+										"say @a breath_attack dragon_walking"
+									]
+								},
+								"remove": {
+									"component_groups": [
+										"dragon_fly",
+										"dragon_anchor",
+										"bite_attack"
+									]
+								},
+								"add": {
+									"component_groups": [
+										"dragon_walking",
+										"breath_attack",
+										"mode_switcher"
+									]
+								}
+							},
+							{ // revient au même grâce au mode switcher
+								"weight": 20,
+								"queue_command": {
+									"command": [
+										"say @a bite_attack dragon_walking"
+									]
+								},
+								"remove": {
+									"component_groups": [
+										"dragon_fly",
+										"dragon_anchor",
+										"breath_attack"
+									]
+								},
+								"add": {
+									"component_groups": [
+										"dragon_walking",
+										"bite_attack",
+										"mode_switcher"
+									]
+								}
+							},
+							{
+								"weight": 20,
+								"queue_command": {
+									"command": [
+										"say @a dragon_fly"
+									]
+								},
+								"remove": {
+									"component_groups": [
+										"dragon_walking",
+										"dragon_anchor",
+										"breath_attack",
+										"bite_attack",
+										"mode_switcher"
+									]
+								},
+								"add": {
+									"component_groups": [
+										"dragon_fly"
+									]
+								}
+							}
+						]
+					}
+				]
+			}
+		},
+		"components": {
+			"minecraft:loot": {
+				"table": "loot_tables/entities/fire_wyvern.json"
+			},
+			"minecraft:behavior.float": {
+				"priority": 0
+			},
+			"minecraft:jump.static": {},
+			"minecraft:can_climb": {},
+			"minecraft:knockback_resistance": {
+				"value": 100,
+				"max": 100
+			},
+			"minecraft:follow_range": {
+				"value": 64,
+				"max": 64
+			},
+			"minecraft:type_family": {
+				"family": [
+					"fire_wyvern"
+				]
+			},
+			"minecraft:health": {
+				"value": 800,
+				"max": 800
+			},
+			"minecraft:fire_immune": true,
+			"minecraft:breathable": {
+				"totalSupply": 125,
+				"suffocateTime": 0,
+				"breathesAir": true,
+				"breathesWater": false
+			},
+			"minecraft:damage_sensor": {
+				"triggers": [
+					{
+						"cause": "fall",
+						"deals_damage": false
+					},
+					{
+						"cause": "lava",
+						"deals_damage": false
+					},
+					{
+						"cause": "entity_explosion",
+						"deals_damage": false
+					},
+					{
+						"on_damage": {
+							"filters": {
+								"test": "is_family",
+								"subject": "other",
+								"value": "fire_wyvern"
+							}
+						},
+						"deals_damage": false
+					}
+				]
+			},
+			"minecraft:scale": {
+				"value": 4.0
+			},
+			"minecraft:collision_box": {
+				"width": 1.0,
+				"height": 1.0
+			},
+			"minecraft:behavior.hurt_by_target": {
+				"priority": 0
+			},
+			"minecraft:behavior.look_at_player": {
+				"priority": 7,
+				"look_distance": 6.0,
+				"probability": 0.02
+			},
+			"minecraft:behavior.random_look_around": {
+				"priority": 9
+			},
+			"minecraft:break_blocks": {
+				"breakable_blocks": [
+					"log",
+					"log2",
+					"bamboo",
+					"bamboo_sapling",
+					"beetroot",
+					"brown_mushroom",
+					"carrots",
+					"carved_pumpkin",
+					"chorus_flower",
+					"chorus_plant",
+					"deadbush",
+					"double_plant",
+					"leaves",
+					"leaves2",
+					"lit_pumpkin",
+					"melon_block",
+					"melon_stem",
+					"potatoes",
+					"pumpkin",
+					"pumpkin_stem",
+					"red_flower",
+					"red_mushroom",
+					"crimson_fungus",
+					"warped_fungus",
+					"reeds",
+					"sapling",
+					"snow_layer",
+					"sweet_berry_bush",
+					"tallgrass",
+					"turtle_egg",
+					"vine",
+					"waterlily",
+					"wheat",
+					"yellow_flower"
+				]
+			}
+		}
+	}
+}

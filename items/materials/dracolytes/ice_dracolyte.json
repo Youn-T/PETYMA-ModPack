@@ -1,0 +1,18 @@
+{
+	"format_version": "1.20.30",
+	"minecraft:item": {
+		"description": {
+			"identifier": "ck:ice_dracolyte",
+			"category": "Items"
+		},
+		"components": {
+			"minecraft:description.menu_category": {
+				"category": "equipment", 
+				"parent": "itemGroup.name.dracolytes"
+			},
+			"minecraft:icon": {
+				"texture": "ice_dracolyte"
+			}
+		}
+	}
+}

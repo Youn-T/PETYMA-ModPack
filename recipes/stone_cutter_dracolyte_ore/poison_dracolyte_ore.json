@@ -1,0 +1,29 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+    "identifier": "ck:poison_ore"
+    },
+
+    
+    "tags": [ "crafting_table" ],
+    "pattern": [
+      "###",
+      "###",
+      "###"
+    ],
+    "key": {
+      "#": {
+        "item": "ck:poison_dracolyte_ore"
+      }
+    },
+	"unlock": [
+      {
+        "item": "ck:poison_dracolyte_ore"
+      }
+    ],
+    "result": {
+      "item": "ck:poison_dracolyte"
+    }
+  }
+}

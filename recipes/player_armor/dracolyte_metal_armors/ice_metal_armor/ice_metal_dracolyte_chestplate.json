@@ -1,0 +1,27 @@
+{
+	"format_version": "1.12",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "ck:ice_metal_chestplate"
+		},
+
+		"tags": ["ck_dracolyte_forge"],
+		"pattern": [
+			"AAA",
+			"ABA",
+			"AAA"
+		],
+		"key": {
+			"A": {
+				"item": "ck:ice_dracolyte_crystal"
+			},
+			"B": {
+				"item": "ck:ice_dracolyte_chestplate"
+			}
+		},
+		"result": {
+			"item": "ck:ice_metal_chestplate"
+		}
+	}
+
+}

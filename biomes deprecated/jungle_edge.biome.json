@@ -1,0 +1,38 @@
+{ // POISON
+  "jungle_edge": {
+    "format_version": "1.20.60",
+    "minecraft:surface_parameters": {
+      "top_material": "ck:poison_grass", // "ck:poison_grass",
+      "mid_material": "ck:poison_stone",
+      "sea_floor_material": "minecraft:dirt",
+      "foundation_material": "ck:poison_stone",
+      "sea_material": "minecraft:water",
+      "sea_floor_depth": 1
+    },
+    "minecraft:overworld_generation_rules": {
+      "generate_for_climates": [
+        [
+          "medium",
+          1
+        ],
+        [
+          "warm",
+          1
+        ],
+        [
+          "cold",
+          1
+        ]
+      ]
+    },
+    "minecraft:tags": {
+      "tags": [
+        "animal",
+        "monster",
+        "overworld",
+        "jungle_edge",
+        "jungle"
+      ]
+    }
+  }
+}

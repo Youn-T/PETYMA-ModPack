@@ -1,0 +1,12 @@
+{
+    "format_version": "1.13.0",
+    "minecraft:weighted_random_feature": {
+      "description": {
+        "identifier": "petyma:fire_choose"
+      },
+      "features": [
+        [ "petyma:fire_nest", 1 ],
+        [ "petyma:fire_pool", 10 ]
+      ]
+    }
+  }

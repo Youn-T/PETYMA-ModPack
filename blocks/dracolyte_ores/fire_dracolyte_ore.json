@@ -1,0 +1,25 @@
+{
+    "format_version": "1.18.0",
+    "minecraft:block": {
+        "description": {
+            "identifier": "ck:fire_dracolyte_ore"
+        },
+        "components": {
+			"minecraft:loot": "loot_tables/blocks/dracolyte_blocks/fire_dracolyte_block.json",
+			"minecraft:creative_category": {
+				"category": "nature",
+				"group": "itemGroup.name.ore"
+			},
+            "minecraft:destructible_by_mining": {
+				"seconds_to_destroy": 2.0
+			},
+            
+            "minecraft:map_color": "#00ff00",
+            "minecraft:flammable": {
+                "flame_odds": 0,
+                "burn_odds": 0
+            },
+            "minecraft:block_light_emission": 0.3
+        }
+    }
+}

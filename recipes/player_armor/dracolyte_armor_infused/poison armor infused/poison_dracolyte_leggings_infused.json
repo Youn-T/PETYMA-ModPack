@@ -1,0 +1,30 @@
+{
+	"format_version": "1.12",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "ck:poison_dracolyte_leggings_infused"
+		},
+
+		"tags": ["ck_rune_stone_table"],
+		"pattern": [
+			" A ",
+			" B ",
+			" C "
+		],
+		"key": {
+			"A": {
+				"item": "petyma:infusing_template_poison"
+			},
+			"B": {
+				"item": "ck:poison_essence"
+			},
+			"C": {
+				"item": "ck:poison_dracolyte_leggings"
+			}
+		},
+		"result": {
+			"item": "ck:poison_dracolyte_leggings_infused"
+		}
+	}
+
+}

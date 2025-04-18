@@ -1,0 +1,737 @@
+{
+	"format_version": "1.16.0",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "ck:wyvern_baby",
+			"is_summonable": true,
+			"is_spawnable": true,
+            "is_experimental": false,
+			"scripts": {
+				"animate": [
+					"root"
+				]
+			},
+			"animations": {
+				"root": "controller.animation.mob_transition"
+			}
+		},
+
+		"component_groups": {
+		    "skin_1": {
+		        "minecraft:skin_id": {
+		            "value": 0
+		        }
+		    },
+		    "skin_2": {
+		        "minecraft:skin_id": {
+		            "value": 1
+		        }
+		    },
+		    "skin_3": {
+		        "minecraft:skin_id": {
+		            "value": 2
+		        }
+		    },
+		    "skin_4": {
+		        "minecraft:skin_id": {
+		            "value": 3
+		        }
+		    },
+		    "skin_5": {
+		        "minecraft:skin_id": {
+		            "value": 4
+		        }
+		    },
+            "transform_to_abyssal_wild": {
+                "minecraft:transformation": {
+					"transformation_sound": "saddle",
+					"keep_owner": false,
+                    "into": "ck:abyssal_wyvern",
+                    "delay": 0.5
+                }
+            },
+            "transform_to_abyssal_tamed": {
+                "minecraft:transformation": {
+					"transformation_sound": "saddle",
+					"keep_owner": true,
+                    "into": "ck:tamed_abyssal_wyvern<minecraft:entity_spawned>",
+                    "delay": 0.5
+                }
+            },
+            "transform_to_fire_wild": {
+                "minecraft:transformation": {
+					"transformation_sound": "saddle",
+					"keep_owner": false,
+                    "into": "ck:fire_wyvern",
+                    "delay": 0.5
+                }
+            },
+            "transform_to_fire_tamed": {
+                "minecraft:transformation": {
+					"transformation_sound": "saddle",
+					"keep_owner": true,
+                    "into": "ck:tamed_fire_wyvern<minecraft:entity_spawned>",
+                    "delay": 0.5
+                }
+            },
+            "transform_to_ice_wild": {
+                "minecraft:transformation": {
+					"transformation_sound": "saddle",
+					"keep_owner": false,
+                    "into": "ck:ice_wyvern",
+                    "delay": 0.5
+                }
+            },
+            "transform_to_ice_tamed": {
+                "minecraft:transformation": {
+					"transformation_sound": "saddle",
+					"keep_owner": true,
+                    "into": "ck:tamed_ice_wyvern<minecraft:entity_spawned>",
+                    "delay": 0.5
+                }
+            },
+            "transform_to_lightning_wild": {
+                "minecraft:transformation": {
+					"transformation_sound": "saddle",
+					"keep_owner": false,
+                    "into": "ck:lightning_wyvern",
+                    "delay": 0.5
+                }
+            },
+            "transform_to_lightning_tamed": {
+                "minecraft:transformation": {
+					"transformation_sound": "saddle",
+					"keep_owner": true,
+                    "into": "ck:tamed_lightning_wyvern<minecraft:entity_spawned>",
+                    "delay": 0.5
+                }
+            },
+            "transform_to_poison_wild": {
+                "minecraft:transformation": {
+					"transformation_sound": "saddle",
+					"keep_owner": false,
+                    "into": "ck:poison_wyvern",
+                    "delay": 0.5
+                }
+            },
+            "transform_to_poison_tamed": {
+                "minecraft:transformation": {
+					"transformation_sound": "saddle",
+					"keep_owner": true,
+                    "into": "ck:tamed_poison_wyvern<minecraft:entity_spawned>",
+                    "delay": 0.5
+                }
+            },
+            "ambient_default": {
+                "minecraft:ambient_sound_interval": {
+                    "event_name": "ambient"
+                }
+            },
+            "ambient_sleep": {
+                "minecraft:ambient_sound_interval": {
+                    "event_name": "sleep"
+                }
+            },
+			"mob_sitable": {
+				"minecraft:sittable": {}
+			},
+			"mob_sleepable": {
+				"minecraft:behavior.nap": {
+					"priority": 1,
+					"cooldown_min": 15.0,
+					"cooldown_max": 30.0,
+					"mob_detect_dist": 12.0,
+					"mob_detect_height": 6.0,
+					"can_nap_filters": {
+						"all_of": [{
+								"test": "on_ground",
+								"subject": "self",
+								"operator": "==",
+								"value": true
+							},
+							{
+								"test": "is_weather",
+								"subject": "self",
+								"operator": "!=",
+								"value": "thunderstorm"
+							},
+							{
+								"test": "is_riding",
+								"value": false
+							}
+						]
+					},
+					"wake_mob_exceptions": {
+						"any_of": [{
+								"test": "is_owner",
+								"subject": "player",
+								"operator": "equals",
+								"value": true
+							},
+							{
+								"test": "is_family",
+								"subject": "other",
+								"operator": "==",
+								"value": "wyvern"
+							},
+							{
+								"test": "is_sneaking",
+								"subject": "other",
+								"operator": "==",
+								"value": true
+							}
+						]
+					}
+				},
+				"minecraft:interact": {
+					"interactions": [{
+						"on_interact": {
+							"filters": {
+								"all_of": [{
+										"test": "is_owner",
+										"subject": "player",
+										"operator": "equals",
+										"value": true
+									},
+									{
+										"test": "is_sleeping"
+									}
+								]
+							},
+							"event": "ck:mob_not_sleepable"
+						},
+						"interact_text": "action.interact.ck_wake_up",
+						"swing": true
+					}]
+				}
+			},
+		    "wild_baby": {
+				"minecraft:behavior.follow_parent": {
+					"priority": 6,
+					"speed_multiplier": 1.1
+				},
+				"minecraft:tameable": {
+					"probability": 0.06,
+					"tame_items": [
+					    "salmon",
+					    "cod"
+					],
+					"tame_event": {
+						"event": "ck:mob_is_tamed",
+						"target": "self"
+					}
+				}
+		    },
+		    "tamed_baby": {
+		        "minecraft:is_tamed": {},
+		        "minecraft:leashable": {
+		            "soft_distance": 4.0,
+		            "hard_distance": 6.0,
+		            "max_distance": 10.0
+		        }
+		    },
+			"baby_1": {
+		        "minecraft:type_family": {
+		            "family": [
+		                "wyvern",
+		                "wyvern_baby_1"
+		            ]
+		        },
+				"minecraft:scale_by_age": {
+					"start_scale": 0.08,
+					"end_scale": 0.1
+				},
+				"minecraft:ageable": {
+					"duration": 1200,
+					"feed_items": [{
+						"item": "salmon",
+						"growth": 0.02537
+					}],
+					"grow_up": {
+						"event": "ck:to_baby_2",
+						"target": "self"
+					}
+				}
+			},
+			"baby_2": {
+		        "minecraft:type_family": {
+		            "family": [
+		                "wyvern",
+		                "wyvern_baby_2"
+		            ]
+		        },
+				"minecraft:scale_by_age": {
+					"start_scale": 0.1,
+					"end_scale": 1.0
+				},
+				"minecraft:ageable": {
+					"duration": 1200,
+					"feed_items": [{
+						"item": "salmon",
+						"growth": 0.02537
+					}],
+					"grow_up": {
+						"event": "ck:to_adult",
+						"target": "self"
+					}
+				}
+			}
+		},
+		"events": {
+			"minecraft:entity_spawned": {
+				"add": {
+					"component_groups": [
+						"baby_1",
+						"wild_baby",
+						"mob_sleepable",
+						"mob_sitable"
+					]
+				}
+			},
+			"ck:ambient_default": {
+				"remove": {
+					"component_groups": [
+						"ambient_sleep"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"ambient_default"
+					]
+				}
+			},
+			"ck:ambient_sleep": {
+				"remove": {
+					"component_groups": [
+						"ambient_default"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"ambient_sleep"
+					]
+				}
+			},
+			"ck:mob_sitable": {
+				"add": {
+					"component_groups": [
+						"mob_sitable"
+					]
+				}
+			},
+			"ck:mob_sleepable": {
+				"add": {
+					"component_groups": [
+						"mob_sleepable"
+					]
+				}
+			},
+			"ck:mob_not_sitable": {
+				"remove": {
+					"component_groups": [
+						"mob_sitable"
+					]
+				}
+			},
+			"ck:mob_not_sleepable": {
+				"remove": {
+					"component_groups": [
+						"mob_sleepable"
+					]
+				}
+			},
+			"ck:abyssal_baby": {
+				"add": {
+					"component_groups": [
+						"baby_1",
+						"wild_baby",
+						"mob_sleepable",
+						"mob_sitable",
+						"skin_1"
+					]
+				}
+			},
+			"ck:fire_baby": {
+				"add": {
+					"component_groups": [
+						"baby_1",
+						"wild_baby",
+						"mob_sleepable",
+						"mob_sitable",
+						"skin_2"
+					]
+				}
+			},
+			"ck:ice_baby": {
+				"add": {
+					"component_groups": [
+						"baby_1",
+						"wild_baby",
+						"mob_sleepable",
+						"mob_sitable",
+						"skin_3"
+					]
+				}
+			},
+			"ck:lightning_baby": {
+				"add": {
+					"component_groups": [
+						"baby_1",
+						"wild_baby",
+						"mob_sleepable",
+						"mob_sitable",
+						"skin_4"
+					]
+				}
+			},
+			"ck:poison_baby": {
+				"add": {
+					"component_groups": [
+						"baby_1",
+						"wild_baby",
+						"mob_sleepable",
+						"mob_sitable",
+						"skin_5"
+					]
+				}
+			},
+			"ck:mob_is_tamed": {
+				"remove": {
+					"component_groups": [
+						"wild_baby"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"tamed_baby"
+					]
+				}
+			},
+			"ck:to_baby_2": {
+				"remove": {
+					"component_groups": [
+						"baby_1"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"baby_2"
+					]
+				}
+			},
+			"ck:to_adult": {
+				"sequence": [
+				    {
+						"filters": {
+							"test": "has_component",
+							"operator": "==",
+							"value": "minecraft:is_tamed"
+						},
+						"sequence": [
+						    {
+						        "filters": {
+						            "test": "is_skin_id",
+						            "value": 0
+						        },
+						        "add": {
+						            "component_groups": [
+						                "transform_to_abyssal_tamed"
+						             ]
+						        }
+						    },
+						    {
+						        "filters": {
+						            "test": "is_skin_id",
+						            "value": 1
+						        },
+						        "add": {
+						            "component_groups": [
+						                "transform_to_fire_tamed"
+						             ]
+						        }
+						    },
+						    {
+						        "filters": {
+						            "test": "is_skin_id",
+						            "value": 2
+						        },
+						        "add": {
+						            "component_groups": [
+						                "transform_to_ice_tamed"
+						             ]
+						        }
+						    },
+						    {
+						        "filters": {
+						            "test": "is_skin_id",
+						            "value": 3
+						        },
+						        "add": {
+						            "component_groups": [
+						                "transform_to_lightning_tamed"
+						             ]
+						        }
+						    },
+						    {
+						        "filters": {
+						            "test": "is_skin_id",
+						            "value": 4
+						        },
+						        "add": {
+						            "component_groups": [
+						                "transform_to_poison_tamed"
+						             ]
+						        }
+						    }
+						]
+					},
+					{
+						"filters": {
+							"test": "has_component",
+							"operator": "!=",
+							"value": "minecraft:is_tamed"
+						},
+						"sequence": [
+						    {
+						        "filters": {
+						            "test": "is_skin_id",
+						            "value": 0
+						        },
+						        "add": {
+						            "component_groups": [
+						                "transform_to_abyssal_wild"
+						             ]
+						        }
+						    },
+						    {
+						        "filters": {
+						            "test": "is_skin_id",
+						            "value": 1
+						        },
+						        "add": {
+						            "component_groups": [
+						                "transform_to_fire_wild"
+						             ]
+						        }
+						    },
+						    {
+						        "filters": {
+						            "test": "is_skin_id",
+						            "value": 2
+						        },
+						        "add": {
+						            "component_groups": [
+						                "transform_to_ice_wild"
+						             ]
+						        }
+						    },
+						    {
+						        "filters": {
+						            "test": "is_skin_id",
+						            "value": 3
+						        },
+						        "add": {
+						            "component_groups": [
+						                "transform_to_lightning_wild"
+						             ]
+						        }
+						    },
+						    {
+						        "filters": {
+						            "test": "is_skin_id",
+						            "value": 4
+						        },
+						        "add": {
+						            "component_groups": [
+						                "transform_to_poison_wild"
+						             ]
+						        }
+						    }
+						]
+					}
+				]
+			}
+		},
+
+		"components": {
+			"minecraft:is_baby": {},
+			"minecraft:movement": {
+				"value": 0.15
+			},
+			"minecraft:behavior.stay_while_sitting": {
+				"priority": 0
+			},
+			"minecraft:damage_sensor": {
+				"triggers": [{
+					"cause": "fall",
+					"deals_damage": false
+				},
+				{
+						"on_damage": {
+							"filters": [{
+							    "all_of": [
+							        {
+								"test": "is_owner",
+								"subject": "player",
+								"operator": "==",
+								"value": true
+							},
+							        {
+								"test": "has_equipment",
+								"subject": "other",
+								"domain": "hand",
+								"operator": "==",
+								"value": "ck:dragon_staff"
+							}
+							]
+							}]
+						},
+						"deals_damage": false
+					}]
+			},
+			"minecraft:breathable": {
+				"total_supply": 15,
+				"suffocate_time": 0
+			},
+			"minecraft:physics":{},
+			"minecraft:navigation.walk": {
+				"can_path_over_water": true,
+				"avoid_water": true,
+				"avoid_portals": false,
+				"avoid_damage_blocks": true
+			},
+			"minecraft:movement.basic": {},
+			"minecraft:behavior.hurt_by_target": {
+				"priority": 0
+			},
+			"minecraft:jump.static": {},
+			"minecraft:can_climb": {},
+			"minecraft:behavior.look_at_player": {
+				"priority": 7,
+				"look_distance": 6.0,
+				"probability": 0.02
+			},
+			"minecraft:behavior.random_look_around": {
+				"priority": 9
+			},
+			"minecraft:hurt_on_condition": {
+				"damage_conditions": [{
+					"filters": {
+						"test": "in_lava",
+						"subject": "self",
+						"operator": "==",
+						"value": true
+					},
+					"cause": "lava",
+					"damage_per_tick": 4
+				}]
+			},
+			"minecraft:pushable": {
+				"is_pushable": true,
+				"is_pushable_by_piston": true
+			},
+			"minecraft:experience_reward": {
+				"on_death": "query.last_hit_by_player ? Math.Random(0,1) : 0"
+			},
+			"minecraft:behavior.float": {
+				"priority": 0
+			},
+			"minecraft:behavior.panic": {
+				"priority": 1,
+				"speed_multiplier": 1.3
+			},
+			"minecraft:behavior.avoid_mob_type": {
+				"entity_types": [{
+						"filters": {
+						    "all_of": [
+						        {
+							"test": "is_family",
+							"subject": "other",
+							"value": "player"
+						        },
+						        {
+							"test": "is_family",
+							"subject": "self",
+							"value": "wyvern_baby_wild"
+						        },
+						        {
+							"test": "is_sneaking",
+							"subject": "other",
+							"value": false
+						        }
+						    ]
+						},
+						"max_dist": 8,
+						"walk_speed_multiplier": 1.15,
+						"sprint_speed_multiplier": 1.4
+					},
+					{
+						"filters": {
+							"test": "is_family",
+							"subject": "other",
+							"value": "monster"
+						},
+						"max_dist": 8,
+						"walk_speed_multiplier": 1.15,
+						"sprint_speed_multiplier": 1.4
+					}
+				],
+				"priority": 1
+			},
+			"minecraft:behavior.random_stroll": {
+				"priority": 2
+			},
+			"minecraft:collision_box": {
+				"width": 3.3,
+				"height": 2.3
+			},
+			"minecraft:health": {
+				"value": 15,
+				"max": 15
+			},
+			"minecraft:behavior.pickup_items": {
+				"priority": 4,
+				"max_dist": 10,
+				"goal_radius": 2,
+				"speed_multiplier": 1.0,
+				"pickup_based_on_chance": false,
+				"can_pickup_any_item": false,
+				"cooldown_after_being_attacked": 20.0
+			},
+			"minecraft:behavior.eat_carried_item": {
+				"priority": 2,
+				"delay_before_eating": 28
+			},
+			"minecraft:equip_item": {},
+			"minecraft:behavior.equip_item": {
+				"priority": 5
+			},
+			"minecraft:shareables": {
+				"all_items": false,
+				"all_items_max_amount": 1,
+				"items": [
+					// {
+					// 	"item": "ck:raw_angler_fish",
+					// 	"priority": 0,
+					// 	"max_amount": 1
+					// },
+					// {
+					// 	"item": "ck:cooked_angler_fish",
+					// 	"priority": 0,
+					// 	"max_amount": 1
+					// },
+					{
+						"item": "minecraft:fish",
+						"priority": 0,
+						"max_amount": 1
+					},
+					{
+						"item": "minecraft:salmon",
+						"priority": 0,
+						"max_amount": 1
+					}
+				]
+			}
+		}
+	}
+}

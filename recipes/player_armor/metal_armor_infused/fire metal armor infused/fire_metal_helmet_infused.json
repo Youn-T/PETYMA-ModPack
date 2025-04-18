@@ -1,0 +1,30 @@
+{
+	"format_version": "1.12",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "ck:fire_metal_helmet_infused"
+		},
+
+		"tags": ["ck_rune_stone_table"],
+		"pattern": [
+			" A ",
+			" B ",
+			" C "
+		],
+		"key": {
+			"A": {
+				"item": "petyma:infusing_template_fire"
+			},
+			"B": {
+				"item": "ck:fire_essence"
+			},
+			"C": {
+				"item": "ck:fire_metal_helmet"
+			}
+		},
+		"result": {
+			"item": "ck:fire_metal_helmet_infused"
+		}
+	}
+
+}

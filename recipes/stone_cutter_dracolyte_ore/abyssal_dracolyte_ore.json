@@ -1,0 +1,29 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+    "identifier": "ck:abyssal_ore"
+    },
+
+    
+    "tags": [ "crafting_table" ],
+    "pattern": [
+      "###",
+      "###",
+      "###"
+    ],
+    "key": {
+      "#": {
+        "item": "ck:abyssal_dracolyte_ore"
+      }
+    },
+	"unlock": [
+      {
+        "item": "ck:abyssal_dracolyte_ore"
+      }
+    ],
+    "result": {
+      "item": "ck:abyssal_dracolyte"
+    }
+  }
+}

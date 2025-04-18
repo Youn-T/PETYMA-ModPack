@@ -1,0 +1,74 @@
+{
+	"format_version": "1.16.0",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "ck:spawn_tamed_wyvern",
+			"runtime_identifier": "minecraft:arrow",
+			"is_spawnable": false,
+			"is_summonable": false,
+			"is_experimental": false
+		},
+		"component_groups": {
+		    "abyssal_wyvern": {
+		        "minecraft:transformation": {
+		            "into": "ck:tamed_abyssal_wyvern<minecraft:entity_spawned>",
+		            "keep_owner": true
+		        }
+		    },
+		    "fire_wyvern": {
+		        "minecraft:transformation": {
+		            "into": "ck:tamed_fire_wyvern<minecraft:entity_spawned>",
+		            "keep_owner": true
+		        }
+		    },
+		    "ice_wyvern": {
+		        "minecraft:transformation": {
+		            "into": "ck:tamed_ice_wyvern<minecraft:entity_spawned>",
+		            "keep_owner": true
+		        }
+		    },
+		    "lightning_wyvern": {
+		        "minecraft:transformation": {
+		            "into": "ck:tamed_lightning_wyvern<minecraft:entity_spawned>",
+		            "keep_owner": true
+		        }
+		    },
+		    "poison_wyvern": {
+		        "minecraft:transformation": {
+		            "into": "ck:tamed_poison_wyvern<minecraft:entity_spawned>",
+		            "keep_owner": true
+		        }
+		    }
+		},
+		"events": {
+		    "ck:abyssal": {
+		        "add": {
+		            "component_groups": ["abyssal_wyvern"]
+		        }
+		    },
+		    "ck:fire": {
+		        "add": {
+		            "component_groups": ["fire_wyvern"]
+		        }
+		    },
+		    "ck:ice": {
+		        "add": {
+		            "component_groups": ["ice_wyvern"]
+		        }
+		    },
+		    "ck:lightning": {
+		        "add": {
+		            "component_groups": ["lightning_wyvern"]
+		        }
+		    },
+		    "ck:poison": {
+		        "add": {
+		            "component_groups": ["poison_wyvern"]
+		        }
+		    }
+		},
+		"components": {
+			"minecraft:projectile": {}
+		}
+	}
+}

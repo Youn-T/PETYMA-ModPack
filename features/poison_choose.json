@@ -1,0 +1,12 @@
+{
+    "format_version": "1.13.0",
+    "minecraft:weighted_random_feature": {
+      "description": {
+        "identifier": "petyma:poison_choose"
+      },
+      "features": [
+        [ "petyma:poison_nest", 1 ],
+        [ "petyma:poison_pool", 8 ]
+      ]
+    }
+  }

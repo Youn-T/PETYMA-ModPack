@@ -1,0 +1,17 @@
+{
+	"format_version": "1.20.30",
+	"minecraft:item": {
+		"description": {
+			"identifier": "petyma:infusing_template_ice",
+			"category": "Items"
+		},
+		"components": {
+			"minecraft:icon": {
+				"texture": "infusing_template_ice"
+			},
+			"tags": [
+				"minecraft:transform_templates"
+			]
+		}
+	}
+}

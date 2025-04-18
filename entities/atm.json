@@ -1,0 +1,57 @@
+{
+	"format_version": "1.16.0",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "petyma:atm",
+			"is_spawnable": true,
+			"is_summonable": true
+		},
+		"component_groups": {
+			"remove": {
+				"minecraft:instant_despawn": {}
+			}
+		},
+		"components": {
+			"minecraft:interact": {
+				"interactions": [
+					{
+						"interact_text": "open atm"
+					}
+				]
+			},
+			"minecraft:knockback_resistance": {
+				"value": 100
+			},
+			"minecraft:health": {
+				"min": 1,
+				"value": 1,
+				"max": 1
+			},
+			"minecraft:tick_world": {
+				"never_despawn": true,
+				"radius": 2
+			},
+			"minecraft:collision_box": {
+				"width": 0.15,
+				"height": 0.2
+			},
+			"minecraft:damage_sensor": {
+				"triggers": [
+					{
+						"cause": "all",
+						"deals_damage": false
+					}
+				]
+			}
+		},
+		"events": {
+			"remove": {
+				"add": {
+					"component_groups": [
+						"remove"
+					]
+				}
+			}
+		}
+	}
+}

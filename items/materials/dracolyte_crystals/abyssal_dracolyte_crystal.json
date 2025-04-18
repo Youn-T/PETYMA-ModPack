@@ -1,0 +1,18 @@
+{
+	"format_version": "1.20.30",
+	"minecraft:item": {
+		"description": {
+			"identifier": "ck:abyssal_dracolyte_crystal",
+			"category": "Items"
+		},
+		"components": {
+			"minecraft:description.menu_category": {
+				"category": "equipment", 
+				"parent": "itemGroup.name.ore"
+			},
+			"minecraft:icon": {
+				"texture": "abyssal_dracolyte_crystal"
+			}
+		}
+	}
+}

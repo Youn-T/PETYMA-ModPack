@@ -1,0 +1,27 @@
+{
+	"format_version": "1.18.0",
+	"minecraft:block": {
+		"description": {
+			"identifier": "ck:ice_rune_block"
+		},
+		"components": {
+			"minecraft:tick":{
+				"interval_range": [
+					1,
+					2
+				],
+				"looping":true
+			},
+            "minecraft:custom_components": [
+				"ck:egg_placed"
+			],
+			"minecraft:creative_category": {
+				"category": "construction",
+				"group": "itemGroup.name.table"
+			},
+			"minecraft:destroy_time": 2.0,
+			
+			"minecraft:map_color": "#00ff00"
+		}
+	}
+}

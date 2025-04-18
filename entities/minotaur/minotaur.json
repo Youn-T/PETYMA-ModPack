@@ -1,0 +1,451 @@
+{
+	"format_version": "1.17.0",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "ck:minotaur",
+			"is_summonable": true,
+			"is_spawnable": true,
+			"scripts": {
+				"animate": [
+					"root"
+				]
+			},
+			"animations": {
+				"root": "controller.animation.minotaur.attack",
+				"death": "animation.minotaur.death",
+				"roar": "animation.minotaur.roar",
+				"attack_1": "animation.minotaur.attack_1",
+				"attack_2": "animation.minotaur.attack_2",
+				"special_attack": "animation.minotaur.special_attack"
+			}
+		},
+		"component_groups": {
+			"transform_to_death": {
+				"minecraft:transformation": {
+					"transformation_sound": "smash",
+					"into": "ck:minotaur<ck:death>"
+				},
+				"minecraft:instant_despawn": {}
+			},
+			"death": {
+			    "minecraft:loot": {
+			        "table": "loot_tables/entities/minotaur.json"
+			    },
+				"minecraft:push_through": {
+					"value": 1
+				},
+				"minecraft:knockback_resistance": {
+				    "value": 100,
+				    "max": 100
+				},
+				"minecraft:variant": {
+					"value": 4
+				},
+				"minecraft:movement": {
+					"value": 0.0
+				},
+				"minecraft:damage_sensor": {
+					"triggers": [{
+						"cause": "all",
+						"deals_damage": false
+					}]
+				},
+				"minecraft:interact": {
+					"interactions": [{
+						"on_interact": {
+							"filters": {
+								"all_of": [{
+										"test": "is_family",
+										"subject": "other",
+										"operator": "equals",
+										"value": "player"
+									}
+								]
+							},
+							"event": "ck:loot"
+						},
+						"interact_text": "action.interact.loot",
+						"swing": true
+					}]
+				}
+			},
+			"attack_1": {
+				"minecraft:variant": {
+					"value": 0
+				},
+				"minecraft:attack": {
+					"damage": [15, 25]
+				},
+				"minecraft:behavior.delayed_attack": {
+					"priority": 1,
+					"attack_once": false,
+					"track_target": true,
+					"require_complete_path": true,
+					"reach_multiplier": 1.6,
+					"speed_multiplier": 1.6,
+					"attack_duration": 1.1667,
+					"hit_delay_pct": 0.2699,
+					"sound_event": "plop"
+				}
+			},
+			"attack_2": {
+				"minecraft:variant": {
+					"value": 1
+				},
+				"minecraft:attack": {
+					"damage": [30, 45]
+				},
+				"minecraft:behavior.delayed_attack": {
+					"priority": 1,
+					"attack_once": false,
+					"track_target": true,
+					"require_complete_path": true,
+					"reach_multiplier": 1.6,
+					"speed_multiplier": 1.6,
+					"attack_duration": 1.23333,
+					"hit_delay_pct": 0.3567,
+					"sound_event": "plop"
+				}
+			},
+			"special_attack": {
+				"minecraft:variant": {
+					"value": 2
+				},
+				"minecraft:attack": {
+					"damage": [60, 70]
+				},
+				"minecraft:behavior.delayed_attack": {
+					"priority": 1,
+					"attack_once": false,
+					"track_target": true,
+					"require_complete_path": true,
+					"reach_multiplier": 1.8,
+					"speed_multiplier": 1.6,
+					"attack_duration": 2.4333,
+					"hit_delay_pct": 0.7068,
+					"sound_event": "attack.strong"
+				}
+			},
+			"move_to_home": {
+				"minecraft:behavior.go_home": {
+					"priority": 3,
+					"speed_multiplier": 1.0,
+					"interval": 1,
+					"goal_radius": 1.0,
+					"on_home": {
+						"event": "ck:on_home",
+						"target": "self"
+					}
+				}
+			},
+			"mob_target": {
+				"minecraft:boss": {
+					"name": "entity.ck:minotaur.name",
+					"should_darken_sky": false,
+					"hud_range": 16
+				},
+				"minecraft:on_target_escape": {
+					"event": "ck:go_home",
+					"target": "self"
+				},
+				"minecraft:on_death": {
+				    "event": "ck:transform_to_death",
+				    "target": "self"
+				},
+				"minecraft:behavior.nearest_prioritized_attackable_target": {
+					"priority": 2,
+					"attack_interval": 0.75,
+					"reselect_targets": true,
+					"target_search_height": 5,
+					"entity_types": [
+						{
+							"filters": {
+								"test": "is_family",
+								"subject": "other",
+								"operator": "!=",
+								"value": "minotaur"
+							},
+							"max_dist": 28,
+							"priority": 0
+						}
+					]
+				}
+			},
+			"mob_sensor": {
+				"minecraft:variant": {
+					"value": 3
+				},
+				"minecraft:push_through": {
+					"value": 1
+				},
+				"minecraft:spell_effects": {
+					"add_effects": [{
+						"effect": "regeneration",
+						"amplifier": 9,
+						"duration": 9999,
+						"display_on_screen_animation": false
+					}]
+				},
+				"minecraft:damage_sensor": {
+					"triggers": [{
+						"cause": "all",
+						"deals_damage": false
+					}]
+				},
+				"minecraft:entity_sensor": {
+					"sensor_range": 4,
+					"event": "ck:start",
+					"event_filters": {
+						"test": "is_family",
+						"subject": "other",
+						"operator": "==",
+						"value": "player"
+					}
+				}
+			},
+			"roaring": {
+				"minecraft:push_through": {
+					"value": 1
+				},
+				"minecraft:spell_effects": {
+					"remove_effects": "regeneration"
+				},
+				"minecraft:damage_sensor": {
+					"triggers": [{
+						"cause": "all",
+						"deals_damage": false
+					}]
+				},
+				"minecraft:behavior.knockback_roar": {
+					"priority": 0,
+					"attack_time": 1.96,
+					"cooldown_time": 0.1,
+					"duration": 3.3333,
+					"knockback_damage": 0,
+					"knockback_strength": 2,
+					"knockback_range": 4,
+					"knockback_filters": {
+						"all_of": [{
+							"test": "is_family",
+							"subject": "other",
+							"operator": "!=",
+							"value": "minotaur"
+						}]
+					},
+					"on_roar_end": {
+						"event": "ck:target_acquired"
+					}
+				}
+			}
+		},
+		"components": {
+			"minecraft:type_family": {
+				"family": ["minotaur", "monster"]
+			},
+			    "minecraft:experience_reward": {
+			        "on_death": "Math.Random(235,345)"
+			    },
+			"minecraft:behavior.move_towards_home_restriction": {
+				"priority": 0,
+				"speed_multiplier": 1.6
+			},
+			"minecraft:home": {
+				"restriction_radius": 26
+			},
+			"minecraft:knockback_resistance": {
+				"value": 100,
+				"max": 100
+			},
+			"minecraft:collision_box": {
+				"width": 1.8,
+				"height": 2.8
+			},
+			"minecraft:breathable": {
+				"total_supply": 15,
+				"suffocate_time": 0
+			},
+			"minecraft:navigation.walk": {
+				"can_path_over_water": true,
+				"avoid_water": true,
+				"avoid_damage_blocks": true
+			},
+			"minecraft:hurt_on_condition": {
+				"damage_conditions": [{
+					"filters": {
+						"test": "in_lava",
+						"subject": "self",
+						"operator": "==",
+						"value": true
+					},
+					"cause": "lava",
+					"damage_per_tick": 4
+				}]
+			},
+			"minecraft:pushable": {
+				"is_pushable": true,
+				"is_pushable_by_piston": true
+			},
+			"minecraft:movement": {
+				"value": 0.20
+			},
+			"minecraft:behavior.float": {
+				"priority": 5
+			},
+			"minecraft:health": {
+				"value": 1550,
+				"max": 1550
+			},
+			"minecraft:follow_range": {
+				"value": 64
+			},
+			"minecraft:physics": {},
+			"minecraft:movement.basic": {},
+			"minecraft:jump.static": {},
+			"minecraft:can_climb": {}
+		},
+		"events": {
+			"minecraft:entity_spawned": {
+				"add": {
+					"component_groups": ["mob_sensor"]
+				}
+			},
+			"ck:loot": {
+				"queue_command": {
+					"command": ["kill @s"]
+				}
+			},
+			"ck:transform_to_death": {
+				"add": {
+					"component_groups": ["transform_to_death"]
+				}
+			},
+			"ck:death": {
+				"add": {
+					"component_groups": ["death"]
+				}
+			},
+			"ck:start": {
+				"remove": {
+					"component_groups": ["mob_sensor"]
+				},
+				"add": {
+					"component_groups": ["roaring"]
+				}
+			},
+			"ck:target_acquired": {
+				"remove": {
+					"component_groups": ["roaring"]
+				},
+				"add": {
+					"component_groups": ["mob_target", "attack_1"]
+				}
+			},
+			"ck:go_home": {
+				"add": {
+					"component_groups": ["move_to_home"]
+				}
+			},
+			"ck:on_home": {
+				"sequence": [{
+						"remove": {
+							"component_groups": ["mob_target", "attack_1", "attack_2", "special_attack", "move_to_home"]
+						}
+					},
+					{
+						"add": {
+							"component_groups": ["mob_sensor"]
+						}
+					}
+				]
+			},
+			"ck:change_attack": {
+				"sequence": [{
+						"filters": {
+							"test": "is_variant",
+							"value": 2
+						},
+						"randomize": [{
+								"weight": 40,
+								"remove": {
+									"component_groups": [
+										"attack_2",
+										"special_attack"
+									]
+								},
+								"add": {
+									"component_groups": [
+										"attack_1"
+									]
+								}
+							},
+							{
+								"weight": 40,
+								"remove": {
+									"component_groups": [
+										"attack_1",
+										"special_attack"
+									]
+								},
+								"add": {
+									"component_groups": [
+										"attack_2"
+									]
+								}
+							}
+						]
+					},
+					{
+						"filters": {
+							"test": "is_variant",
+							"operator": "!=",
+							"value": 2
+						},
+						"randomize": [{
+								"weight": 40,
+								"remove": {
+									"component_groups": [
+										"attack_2",
+										"special_attack"
+									]
+								},
+								"add": {
+									"component_groups": [
+										"attack_1"
+									]
+								}
+							},
+							{
+								"weight": 40,
+								"remove": {
+									"component_groups": [
+										"attack_1",
+										"special_attack"
+									]
+								},
+								"add": {
+									"component_groups": [
+										"attack_2"
+									]
+								}
+							},
+							{
+								"weight": 20,
+								"remove": {
+									"component_groups": [
+										"attack_1",
+										"attack_2"
+									]
+								},
+								"add": {
+									"component_groups": [
+										"special_attack"
+									]
+								}
+							}
+						]
+					}
+				]
+			}
+		}
+	}
+}

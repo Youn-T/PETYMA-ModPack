@@ -1,0 +1,98 @@
+{
+    "format_version": "1.20.80",
+    "minecraft:block": {
+        "description": {
+            "identifier": "ck:rune_stone_table",
+            "menu_category": {
+                "category": "items",
+                "group": "itemGroup.name.table"
+            },
+            "traits": {
+                "minecraft:placement_direction": {
+                    "enabled_states": [
+                        "minecraft:cardinal_direction"
+                    ],
+                    "y_rotation_offset": 180
+                }
+            }
+        },
+        "components": {
+            "tag:metal": {},
+            "tag:ck:dracolyte_metal": {},
+            "minecraft:destructible_by_mining": {
+                "seconds_to_destroy": 3.0
+            },
+            
+            "minecraft:map_color": "#000000",
+            "minecraft:flammable": {
+                "flame_odds": 30,
+                "burn_odds": 30
+            },
+            "minecraft:crafting_table": {
+                "grid_size": 3,
+                "custom_description": "tile.ck:rune_stone_table.name",
+                "crafting_tags": [
+                    "ck_rune_stone_table",
+                    "crafting_table"
+                ]
+            },
+            "minecraft:geometry": "geometry.rune_stone_table",
+			"minecraft:material_instances": {
+				"*": {
+					"texture": "rune_stone_table",
+					"render_method": "alpha_test"
+				}
+			}
+        },
+        "permutations": [
+            {
+                "condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
+                "components": {
+                    "minecraft:transformation": {
+                        "rotation": [
+                            0,
+                            0,
+                            0
+                        ]
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('minecraft:cardinal_direction') == 'west'",
+                "components": {
+                    "minecraft:transformation": {
+                        "rotation": [
+                            0,
+                            90,
+                            0
+                        ]
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('minecraft:cardinal_direction') == 'south'",
+                "components": {
+                    "minecraft:transformation": {
+                        "rotation": [
+                            0,
+                            180,
+                            0
+                        ]
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
+                "components": {
+                    "minecraft:transformation": {
+                        "rotation": [
+                            0,
+                            -90,
+                            0
+                        ]
+                    }
+                }
+            }
+        ]
+    }
+}

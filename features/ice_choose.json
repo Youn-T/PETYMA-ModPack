@@ -1,0 +1,12 @@
+{
+    "format_version": "1.13.0",
+    "minecraft:weighted_random_feature": {
+      "description": {
+        "identifier": "petyma:ice_choose"
+      },
+      "features": [
+        [ "petyma:ice_nest", 1 ],
+        [ "petyma:ice_pool", 9 ]
+      ]
+    }
+  }

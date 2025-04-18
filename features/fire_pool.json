@@ -1,0 +1,29 @@
+{
+    "format_version": "1.13.0",
+    "minecraft:vegetation_patch_feature": {
+        "description": {
+            "identifier": "petyma:fire_pool"
+        },
+        "replaceable_blocks": [
+            "minecraft:dirt",
+            "minecraft:grass_block",
+            "minecraft:hardened_clay",
+            {
+				"name": "minecraft:sand",
+				"states": {
+					"sand_type": "red"
+				}
+			}
+        ],
+        "ground_block": "ck:fire_grass",
+        "vegetation_feature": "petyma:fire_tree",
+        "surface": "floor",
+        "depth": 3,
+        "vertical_range": 5,
+        "vegetation_chance": 0.01,
+        "horizontal_radius": 10,
+        "extra_deep_block_chance": 0.8,
+        "extra_edge_column_chance": 100.0,
+        "waterlogged": false
+    }
+}

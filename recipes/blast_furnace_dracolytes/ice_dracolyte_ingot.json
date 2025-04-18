@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "ck:ice_ingot"
+    },
+    "tags": ["blast_furnace"],
+    "input": {
+      "item": "ck:ice_dracolyte"
+    },
+    "output": "ck:ice_ingot"
+  }
+}

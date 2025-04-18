@@ -1,0 +1,24 @@
+{
+	"format_version": "1.16.100",
+	"minecraft:block": {
+		"description": {
+			"identifier": "ck:poison_grass",
+			"menu_category": {
+				"category": "nature",
+				"group": "itemGroup.name.grass"
+			}
+		},
+		"components": {
+		    "tag:ck:dracolyte_grounds": {},
+		    "tag:ck:poison_dracolyte_grounds": {},
+			"minecraft:destructible_by_mining": {
+				"seconds_to_destroy": 0.5
+			},
+			"tag:fertilize_area":{},
+			"tag:grass":{},
+			"tag:sand":{},
+			"tag:dirt":{},
+			"minecraft:map_color": "#00ff00"
+		}
+	}
+}

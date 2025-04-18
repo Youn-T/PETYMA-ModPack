@@ -1,0 +1,27 @@
+{
+	"format_version": "1.12",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "ck:poison_metal_helmet"
+		},
+
+		"tags": ["ck_dracolyte_forge"],
+		"pattern": [
+			"AAA",
+			"ABA",
+			"AAA"
+		],
+		"key": {
+			"A": {
+				"item": "ck:poison_dracolyte_crystal"
+			},
+			"B": {
+				"item": "ck:poison_dracolyte_helmet"
+			}
+		},
+		"result": {
+			"item": "ck:poison_metal_helmet"
+		}
+	}
+
+}

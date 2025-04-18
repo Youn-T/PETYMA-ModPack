@@ -1,0 +1,76 @@
+{
+	"format_version": "1.20.30",
+	"minecraft:item": {
+		"description": {
+			"identifier": "ck:dragon_staff",
+			"category": "equipment"
+		},
+		"components": {
+			"minecraft:description.menu_category": {
+				"category": "equipment", 
+				"parent": "itemGroup.name.staffs"
+			},
+			"minecraft:icon": {
+			    "texture": "dragon_staff"
+			},
+			"minecraft:max_stack_size": 1,
+			"minecraft:hand_equipped": true,
+			// "minecraft:on_use": {
+			// 	"on_use": {
+			// 		"event": "spawn_loot"
+			// 	}
+			// },
+			"minecraft:weapon": {
+				// "on_not_hurt_entity": {
+				// 	// "event": "ck:ride"
+				// }
+			},
+			"minecraft:cooldown": {
+				"category": "dragon_staff",
+				"duration": 1
+			}
+		}//,
+		// "events": {
+		//     "ck:ride": {
+		//         "queue_command": {
+		//             "command": ["ride @s start_riding @p[c=1] teleport_rider"],
+		//             "target": "other"
+		//         }
+		//     },
+		// 	"spawn_loot": {
+		// 		"sequence": [
+		// 		    {
+		// 			"condition": "query.is_riding",
+		// 				"sequence": [
+		// 					{
+		// 						"swing": {}
+		// 					},
+		// 					{
+		// 						"queue_command": {
+		// 							"command": [
+		// 								"event entity @e[family=player_attack,c=1] ck:mob_rider_attack"
+		// 							]
+		// 						}
+		// 					}
+		// 				]
+		// 		    },
+		// 		    {
+		// 			"condition": "query.is_sneaking && query.is_on_ground",
+		// 				"sequence": [
+		// 					{
+		// 						"swing": {}
+		// 					},
+		// 					{
+		// 						"queue_command": {
+		// 							"command": [
+		// 								"tp @e[family=griffin,c=1] @s"
+		// 							]
+		// 						}
+		// 					}
+		// 				]
+		// 		    }
+		// 		]
+		// 	}
+		// }
+	}
+}

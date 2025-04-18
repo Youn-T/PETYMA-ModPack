@@ -1,0 +1,19 @@
+{
+	"format_version": "1.16.0",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "ck:spawn_tamed_ice_wyvern",
+			"runtime_identifier": "minecraft:arrow",
+			"is_spawnable": true,
+			"is_summonable": false,
+			"is_experimental": false
+		},
+		"components": {
+			"minecraft:projectile": {},
+			"minecraft:transformation": {
+				"into": "ck:tamed_ice_wyvern<minecraft:entity_spawned>",
+				"keep_owner": true
+			}
+		}
+	}
+}

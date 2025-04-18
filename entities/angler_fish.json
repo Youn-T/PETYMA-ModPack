@@ -1,0 +1,194 @@
+{
+    "format_version": "1.16.0",
+    "minecraft:entity": {
+        "description": {
+            "identifier": "ck:angler_fish",
+            "is_spawnable": true,
+            "is_summonable": true,
+            "is_experimental": false
+        },
+        "component_groups": {
+            
+        },
+        "components": {
+            "minecraft:type_family": {
+                "family": [ "angler_fish" ]
+            },
+			"minecraft:knockback_resistance": {
+				"value": 0.8
+			},
+			"minecraft:despawn": {
+				"despawn_from_distance": {
+					"min_distance": 32,
+					"max_distance": 40
+				}
+			},
+            "minecraft:loot": {
+                "table": "loot_tables/entities/angler_fish.json"
+            },
+            "minecraft:physics": {
+                "has_collision": true,
+                "has_gravity": true
+            },
+            "minecraft:experience_reward": {
+                "on_death": "query.last_hit_by_player ? Math.Random(35,45) : 0"
+            },
+            "minecraft:collision_box": {
+                "width": 1.0,
+                "height": 0.8
+            },
+            "minecraft:behavior.panic": {
+                "priority": 2,
+                "speed_multiplier": 1.4
+            },
+            "minecraft:health":{
+                "value": 150,
+                "max": 150
+            },
+            "minecraft:breathable": {
+                "total_supply": 15,
+                "suffocate_time": 0,
+                "breathes_air": false,
+                "breathes_water": true
+            },
+            "minecraft:hurt_on_condition": {
+                "damage_conditions": [
+                    {
+                        "filters": { 
+                            "test": "in_lava",
+                            "subject": "self",
+                            "operator": "==",
+                            "value": true
+                        },
+                        "cause": "lava",
+                        "damage_per_tick": 4
+                    }
+                ]
+            },
+            "minecraft:movement": {
+                "value": 0.12
+            },
+            "minecraft:underwater_movement": {
+                "value": 0.35
+            },
+            "minecraft:navigation.generic": {
+                "is_amphibious": false,
+                "can_path_over_water": false,
+                "can_swim": true,
+                "can_walk": false,
+                "can_breach": false,
+                "can_sink": false
+            },
+            "minecraft:movement.sway": {
+                "sway_amplitude": 0.02
+            },
+            "minecraft:pushable": {
+                "is_pushable": true,
+                "is_pushable_by_piston": true
+            },
+            "minecraft:behavior.avoid_mob_type": {
+                "priority": 1,
+                "entity_types": [
+                    {
+                        "filters": {
+                            "test": "is_family",
+                            "subject": "other",
+                            "value": "sea_serpent"
+                        },
+                        "max_dist": 6,
+                        "max_flee": 15,
+                        "walk_speed_multiplier": 1.5,
+                        "sprint_speed_multiplier": 2.0
+                    }
+                ]
+            },
+            "minecraft:behavior.swim_idle": {
+                "priority": 5
+            },
+            "minecraft:behavior.random_swim": {
+                "speed_multiplier": 1.0,
+                "priority": 3,
+                "xz_dist": 16,
+                "y_dist": 4,
+                "interval": 0
+            },
+            "minecraft:behavior.swim_wander": {
+                "priority": 4,
+                "speed_multiplier": 0.014,
+                "interval": 60
+            },
+            "minecraft:flocking": {
+                "in_water": true,
+                "match_variants": false,
+                "use_center_of_mass": false,
+                "low_flock_limit": 4,
+                "high_flock_limit": 8,
+                "goal_weight": 2.0,
+                "loner_chance": 0.1,
+                "influence_radius": 3.0,
+                "breach_influence": 7.0,
+                "separation_weight": 0.65,
+                "separation_threshold": 0.15,
+                "cohesion_weight": 2.25,
+                "cohesion_threshold": 1.5,
+                "innner_cohesion_threshold": 1.5,
+                "min_height": 4.0,
+                "max_height": 4.0,
+                "block_distance": 1.0,
+                "block_weight": 0.75
+            },
+            "minecraft:attack":{
+                "damage": [8, 18]
+            },
+            "minecraft:behavior.melee_attack": {
+                "priority": 2,
+                "speed_multiplier": 1.2,
+                "reach_multiplier": 1.0
+            },
+            "minecraft:behavior.nearest_attackable_target": {
+                "priority": 1,
+                "within_radius": 30,
+                "reselect_targets": true,
+                "entity_types": [
+                    {
+                        "filters": {
+                            "test": "is_family",
+                            "subject": "other",
+                            "value": "dolphin"
+                        },
+                        "max_dist": 7
+                    },
+					{
+						"filters": {
+							"all_of": [{
+									"any_of": [{
+											"test": "is_family",
+											"subject": "other",
+											"value": "player"
+										},
+										{
+											"test": "is_family",
+											"subject": "other",
+											"value": "villager"
+										}
+									]
+								},
+								{
+									"test": "in_water",
+									"subject": "other",
+									"operator": "==",
+									"value": true
+								}
+							]
+						},
+						"max_dist": 30
+					}
+                ],
+                "must_see": true
+            },
+			"minecraft:conditional_bandwidth_optimization": {}
+        },
+        "events":{
+        }
+    }
+}

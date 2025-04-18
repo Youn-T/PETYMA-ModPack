@@ -1,0 +1,22 @@
+{
+  "format_version": "1.13.0",
+  "minecraft:ore_feature": {
+    "description": {
+      "identifier": "ck:ore_lightning_feature"
+    },
+    "count": 4,
+    "replace_rules": [
+      {
+        "places_block": "ck:lightning_dracolyte_ore",
+        "may_replace": [
+          {
+            "name": "minecraft:stone"
+          },
+          {
+            "name": "minecraft:deepslate"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+    "pools": [
+        {
+            "rolls": 1,
+            "entries": [{
+                "type": "item",
+                "name": "ck:fire_dracolyte_crystal",
+                "weight": 1
+            }]
+        }
+    ]
+}

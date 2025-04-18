@@ -1,0 +1,32 @@
+{
+	"format_version": "1.12",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "ck:dracolyte_forge"
+		},
+
+		"tags": ["crafting_table"],
+		"pattern": [
+			" E ",
+			"BAB",
+			"FFF"
+		],
+		"key": {
+			"B": {
+				"item": "minecraft:wooden_slab"
+			},
+			"A": {
+				"item": "minecraft:deepslate_tile_slab"
+			},
+			"E": {
+				"item": "minecraft:iron_ingot"
+			},
+			"F": {
+				"item": "minecraft:deepslate"
+			}
+		},
+		"result": {
+			"item": "ck:dracolyte_forge"
+		}
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"format_version": "1.20.30",
+	"minecraft:item": {
+		"description": {
+			"identifier": "petyma:infusing_template_lightning",
+			"category": "Items"
+		},
+		"components": {
+			"minecraft:icon": {
+			    "texture": "infusing_template_lightning"
+			},
+			"tags": [
+				"minecraft:transform_templates"
+			]
+		}
+	}
+}

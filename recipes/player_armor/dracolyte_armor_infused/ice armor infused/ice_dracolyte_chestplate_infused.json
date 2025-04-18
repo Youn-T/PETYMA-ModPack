@@ -1,0 +1,30 @@
+{
+	"format_version": "1.12",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "ck:ice_dracolyte_chestplate_infused"
+		},
+
+		"tags": ["ck_rune_stone_table"],
+		"pattern": [
+			" A ",
+			" B ",
+			" C "
+		],
+		"key": {
+			"A": {
+				"item": "petyma:infusing_template_ice"
+			},
+			"B": {
+				"item": "ck:ice_essence"
+			},
+			"C": {
+				"item": "ck:ice_dracolyte_chestplate"
+			}
+		},
+		"result": {
+			"item": "ck:ice_dracolyte_chestplate_infused"
+		}
+	}
+
+}

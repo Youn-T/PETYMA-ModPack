@@ -1,0 +1,105 @@
+{
+	"format_version": "1.16.0",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "ck:ent_root",
+			"is_spawnable": false,
+			"is_summonable": false,
+			"is_experimental": false
+		},
+		"component_groups": {
+
+		},
+		"events": {},
+		"components": {
+			"minecraft:type_family": {
+				"family": ["ent_root", "nature"]
+			},
+			"minecraft:movement": {
+				"value": 0.0
+			},
+			"minecraft:behavior.look_at_target": {
+				"priority": 0
+			},
+			"minecraft:knockback_resistance": {
+				"value": 100,
+				"max": 100
+			},
+			"minecraft:navigation.generic": {
+				"can_path_over_water": false,
+				"can_sink": true,
+				"avoid_water": true,
+				"can_swim": false
+			},
+			"minecraft:physics": {},
+			"minecraft:breathable": {
+				"totalSupply": 15,
+				"suffocateTime": 0,
+				"generates_bubbles": true
+			},
+			"minecraft:movement.basic": {},
+			"minecraft:collision_box": {
+				"width": 1.0,
+				"height": 1.2
+			},
+			"minecraft:damage_sensor": {
+				"triggers": {
+					"cause": "all",
+					"deals_damage": false
+				}
+			},
+			"minecraft:hurt_on_condition": {
+				"damage_conditions": [{
+					"filters": {
+						"test": "in_lava",
+						"subject": "self",
+						"operator": "==",
+						"value": true
+					},
+					"cause": "lava",
+					"damage_per_tick": 4
+				}]
+			},
+			"minecraft:health": {
+				"value": 40,
+				"max": 40
+			},
+			"minecraft:push_through": {
+				"value": 1
+			},
+			"minecraft:pushable": {
+				"is_pushable": false,
+				"is_pushable_by_piston": false
+			},
+			"minecraft:area_attack": {
+				"damage_range": 1,
+				"damage_per_tick": 4,
+				"cause": "contact",
+				"entity_filter": {
+					"any_of": [{
+						"test": "is_family",
+						"subject": "other",
+						"operator": "!=",
+						"value": "nature"
+					}]
+				}
+			},
+			"minecraft:behavior.nearest_prioritized_attackable_target": {
+				"priority": 1,
+				"attack_interval": 1,
+				"reselect_targets": true,
+				"target_search_height": 5,
+				"entity_types": [{
+					"filters": {
+						"test": "is_family",
+						"subject": "other",
+						"operator": "!=",
+						"value": "nature"
+					},
+					"max_dist": 5,
+					"priority": 0
+				}]
+			}
+		}
+	}
+}

@@ -1,0 +1,30 @@
+{
+	"format_version": "1.12",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "petyma:infusing_template_ice"
+		},
+
+		"tags": ["ck_dracolyte_forge"],
+		"pattern": [
+			"ACA",
+			"ABA",
+			"AAA"
+		],
+		"key": {
+			"A": {
+				"item": "minecraft:diamond"
+			},
+			"B": {
+				"item": "minecraft:netherite_ingot"
+			},
+			"C": {
+				"item": "ck:ice_stone"
+			}
+		},
+		"result": {
+			"item": "petyma:infusing_template_ice"
+		}
+	}
+
+}

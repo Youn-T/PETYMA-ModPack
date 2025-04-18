@@ -1,0 +1,24 @@
+{
+	"format_version": "1.12",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "ck:poison_dracolyte_helmet"
+		},
+
+		"tags": ["ck_dracolyte_forge"],
+		"pattern": [
+			"AAA",
+			"A A",
+			""
+		],
+		"key": {
+			"A": {
+				"item": "ck:poison_ingot"
+			}
+		},
+		"result": {
+			"item": "ck:poison_dracolyte_helmet"
+		}
+	}
+
+}

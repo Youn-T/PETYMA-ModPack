@@ -1,0 +1,21 @@
+{
+    "format_version": "1.13.0",
+    "minecraft:feature_rule": {
+        "description": {
+            "identifier": "minecraft:jungle_grass_feature",
+            "places_feature": "ck:jungle_grass_feature"
+        },
+        "conditions": {
+            "placement_pass": "surface_pass",
+            "minecraft:biome_filter": {
+                "all_of": [
+                    {
+                        "test": "has_biome_tag",
+                        "operator": "==",
+                        "value": "jungle_edge"
+                    }
+                ]
+            }
+        }
+    }
+}

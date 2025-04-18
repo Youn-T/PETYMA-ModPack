@@ -1,0 +1,192 @@
+{
+	"format_version": "1.13.0",
+	"minecraft:tree_feature": {
+		"description": {
+			"identifier": "petyma:abyssal_tree"
+		},
+		"may_grow_through": [
+			"minecraft:dirt",
+			"minecraft:grass",
+			{
+				"name": "minecraft:dirt",
+				"states": {
+					"dirt_type": "coarse"
+				}
+			},
+			{
+				"name": "minecraft:bamboo"
+			},
+			{
+				"name": "minecraft:bamboo_sapling"
+			},
+			{
+				"name": "minecraft:tallgrass"
+			},
+			{
+				"name": "minecraft:snow"
+			},
+			{
+				"name": "minecraft:snow_layer"
+			},
+			{
+				"name": "minecraft:double_plant"
+			},
+			{
+				"name": "minecraft:air"
+			},
+			{
+				"name": "minecraft:log"
+			},
+			{
+				"name": "minecraft:log2"
+			},
+			{
+				"name": "minecraft:mud"
+			}
+		],
+		"may_grow_on": [
+			"ck:abyssal_grass"
+		],
+		// "base_cluster": {
+		// 	"may_replace": [
+		// 		{
+		// 			"name": "minecraft:dirt"
+		// 		},
+		// 		{
+		// 			"name": "minecraft:grass"
+		// 		},
+		// 		{
+		// 			"name": "minecraft:clay"
+		// 		},
+		// 		{
+		// 			"name": "minecraft:gravel"
+		// 		}
+		// 	],
+		// 	"num_clusters": 3,
+		// 	"cluster_radius": 3
+		// },
+		"trunk": {
+			"trunk_height": {
+				"range_min": 4,
+				"range_max": 7
+			},
+			"can_be_submerged": {
+				"max_depth": 1.0
+			},
+			"trunk_block": "ck:abyssal_log",
+			"trunk_decoration": {
+				"decoration_chance": 20.0,
+				"decoration_block": "ck:abyssal_dracolyte_crystal_block"
+			}
+		},
+		"canopy": {
+			"canopy_offset": {
+				"min": -3,
+				"max": 0
+			},
+			"min_width": 1,
+			"variation_chance": [
+				{
+					"numerator": 1,
+					"denominator": 2
+				},
+				{
+					"numerator": 1,
+					"denominator": 2
+				},
+				{
+					"numerator": 1,
+					"denominator": 2
+				},
+				{
+					"numerator": 1,
+					"denominator": 1
+				}
+			],
+			"leaf_block": {
+				"name": "minecraft:oak_leaves"
+			},
+			"canopy_decoration": {
+				"decoration_chance": 20.0,
+				"decoration_block": "minecraft:vine",
+				"num_steps": 4,
+				"step_direction": "down"
+			}
+		},
+		"may_replace": [
+			"minecraft:air",
+			{
+				"name": "minecraft:leaves",
+				"states": {
+					"old_leaf_type": "oak"
+				}
+			},
+			{
+				"name": "minecraft:leaves",
+				"states": {
+					"old_leaf_type": "spruce"
+				}
+			},
+			{
+				"name": "minecraft:leaves",
+				"states": {
+					"old_leaf_type": "birch"
+				}
+			},
+			{
+				"name": "minecraft:leaves",
+				"states": {
+					"old_leaf_type": "jungle"
+				}
+			},
+			{
+				"name": "minecraft:leaves2",
+				"states": {
+					"new_leaf_type": "acacia"
+				}
+			},
+			{
+				"name": "minecraft:leaves2",
+				"states": {
+					"new_leaf_type": "dark_oak"
+				}
+			},
+			{
+				"name": "minecraft:tallgrass"
+			},
+			{
+				"name": "minecraft:bamboo"
+			},
+			{
+				"name": "minecraft:bamboo_sapling"
+			},
+			{
+				"name": "minecraft:vine"
+			},
+			{
+				"name": "minecraft:cocoa"
+			},
+			{
+				"name": "minecraft:mangrove_leaves"
+			},
+			{
+				"name": "minecraft:mangrove_roots"
+			},
+			{
+				"name": "minecraft:azalea_leaves"
+			},
+			{
+				"name": "minecraft:double_plant"
+			},
+			{
+				"name": "minecraft:water"
+			},
+			{
+				"name": "minecraft:waterlily"
+			},
+			{
+				"name": "minecraft:snow_layer"
+			}
+		]
+	}
+}

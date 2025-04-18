@@ -1,0 +1,19 @@
+{
+	"format_version": "1.18.0",
+	"minecraft:block": {
+		"description": {
+			"identifier": "ck:lightning_stone"
+		},
+		"components": {
+			"minecraft:creative_category": {
+				"category": "construction",
+				"group": "itemGroup.name.table"
+			},
+		    "tag:ck:dracolyte_stone": {},
+		    "tag:ck:lightning_dracolyte_stone": {},
+			"minecraft:destroy_time": 4.0,
+			
+			"minecraft:map_color": "#00ff00"
+		}
+	}
+}

@@ -1,0 +1,27 @@
+{
+	"format_version": "1.12",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "ck:fire_dracolyte_pickaxe"
+		},
+
+		"tags": ["ck_dracolyte_forge"],
+		"pattern": [
+			"EEE",
+			" I ",
+			" I "
+		],
+		"key": {
+			"E": {
+				"item": "ck:fire_ingot"
+			},
+			"I": {
+				"item": "minecraft:stick"
+			}
+		},
+		"result": {
+			"item": "ck:fire_dracolyte_pickaxe"
+		}
+	}
+
+}

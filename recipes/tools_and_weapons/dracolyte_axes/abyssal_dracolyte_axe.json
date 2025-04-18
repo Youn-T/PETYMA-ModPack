@@ -1,0 +1,27 @@
+{
+	"format_version": "1.12",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "ck:abyssal_dracolyte_axe"
+		},
+
+		"tags": ["ck_dracolyte_forge"],
+		"pattern": [
+			"EE ",
+			"EI ",
+			" I "
+		],
+		"key": {
+			"E": {
+				"item": "ck:abyssal_ingot"
+			},
+			"I": {
+				"item": "minecraft:stick"
+			}
+		},
+		"result": {
+			"item": "ck:abyssal_dracolyte_axe"
+		}
+	}
+
+}

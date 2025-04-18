@@ -1,0 +1,284 @@
+{
+	"format_version": "1.16.0",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "ck:egg",
+			"is_spawnable": false,
+			"is_summonable": true,
+			"is_experimental": false,
+			"scripts": {
+				"animate": [
+					"root"
+				]
+			},
+			"animations": {
+				"root": "controller.animation.egg",
+				"hatching": "animation.hatching",
+				"not_hatching": "animation.not_hatching"
+			}
+		},
+		"component_groups": {
+			"remove": {
+				"minecraft:instant_despawn": {}
+			},
+            "transform_to_abyssal": {
+                "minecraft:is_sheared": {},
+                "minecraft:transformation": {
+					"transformation_sound": "saddle",
+					"keep_owner": false,
+                    "into": "ck:wyvern_baby<ck:abyssal_baby>",
+                    "delay": 0.1
+                }
+            },
+            "transform_to_fire": {
+                "minecraft:is_sheared": {},
+                "minecraft:transformation": {
+					"transformation_sound": "saddle",
+					"keep_owner": false,
+                    "into": "ck:wyvern_baby<ck:fire_baby>",
+                    "delay": 0.1
+                }
+            },
+            "transform_to_ice": {
+                "minecraft:is_sheared": {},
+                "minecraft:transformation": {
+					"transformation_sound": "saddle",
+					"keep_owner": false,
+                    "into": "ck:wyvern_baby<ck:ice_baby>",
+                    "delay": 0.1
+                }
+            },
+            "transform_to_lightning": {
+                "minecraft:is_sheared": {},
+                "minecraft:transformation": {
+					"transformation_sound": "saddle",
+					"keep_owner": false,
+                    "into": "ck:wyvern_baby<ck:lightning_baby>",
+                    "delay": 0.1
+                }
+            },
+            "transform_to_poison": {
+                "minecraft:is_sheared": {},
+                "minecraft:transformation": {
+					"transformation_sound": "saddle",
+					"keep_owner": false,
+                    "into": "ck:wyvern_baby<ck:poison_baby>",
+                    "delay": 0.1
+                }
+            },
+			"abyssal": {
+			    "minecraft:skin_id": {
+			        "value": 0
+			    }
+			},
+			"fire": {
+			    "minecraft:skin_id": {
+			        "value": 1
+			    }
+			},
+			"ice": {
+			    "minecraft:skin_id": {
+			        "value": 2
+			    }
+			},
+			"lightning": {
+			    "minecraft:skin_id": {
+			        "value": 3
+			    }
+			},
+			"poison": {
+			    "minecraft:skin_id": {
+			        "value": 4
+			    }
+			},
+			"hatching": {
+				"minecraft:is_baby": {},
+				"minecraft:ageable": {
+					"duration": 60,
+					"grow_up": {
+						"event": "ck:transform",
+						"target": "self"
+					}
+				}
+			}
+		},
+		"components": {
+			"minecraft:type_family": {
+				"family": ["inanimate", "egg"]
+			},
+			"minecraft:block_sensor": {
+				"sensor_radius": 1.5,
+				"on_break": [
+					{
+						"block_list": [
+							"ck:abyssal_wyvern_egg",
+							"ck:fire_wyvern_egg",
+							"ck:ice_wyvern_egg",
+							"ck:lightning_wyvern_egg",
+							"ck:poison_wyvern_egg"
+						],
+						"on_block_broken": "remove"
+					}
+				]
+			},
+			"minecraft:knockback_resistance": {
+				"value": 100
+			},
+			"minecraft:health": {
+			    "min": 1,
+				"value": 1,
+				"max": 1
+			},
+			"minecraft:tick_world": {
+				"never_despawn": true,
+				"radius": 2
+			},
+			"minecraft:collision_box": {
+				"width": 0.15,
+				"height": 0.2
+			},
+			"minecraft:damage_sensor": {
+				"triggers": [
+					{
+						"cause": "all",
+						"deals_damage": false
+					}
+				]
+			}
+		},
+		"events": {
+			"remove": {
+				"add": {
+					"component_groups": [
+						"remove"
+					]
+				}
+			},
+			"ck:abyssal": {
+				"add": {
+					"component_groups": [
+						"abyssal"
+					]
+				}
+			},
+			"ck:fire": {
+				"add": {
+					"component_groups": [
+						"fire"
+					]
+				}
+			},
+			"ck:ice": {
+				"add": {
+					"component_groups": [
+						"ice"
+					]
+				}
+			},
+			"ck:lightning": {
+				"add": {
+					"component_groups": [
+						"lightning"
+					]
+				}
+			},
+			"ck:poison": {
+				"add": {
+					"component_groups": [
+						"poison"
+					]
+				}
+			},
+			"ck:hatching": {
+				"sequence": [{
+						"filters": {
+							"all_of": [
+								{
+									"test": "has_component",
+									"operator": "!=",
+									"value": "minecraft:is_baby"
+								}
+							]
+						},
+						"add": {
+							"component_groups": [
+								"hatching"
+							]
+						}
+					}
+				]
+			},
+			"ck:stop_hatching": {
+				"remove": {
+					"component_groups": [
+						"hatching"
+					]
+				}
+			},
+			"ck:transform": {
+				"sequence": [
+				    {
+				        "remove": {
+				            "component_groups": ["hatching"]
+				        }
+				    },
+					{
+						"filters": {
+							"test": "is_skin_id",
+							"value": 0
+						},
+						"add": {
+							"component_groups": [
+								"transform_to_abyssal"
+							]
+						}
+					},
+					{
+						"filters": {
+							"test": "is_skin_id",
+							"value": 1
+						},
+						"add": {
+							"component_groups": [
+								"transform_to_fire"
+							]
+						}
+					},
+					{
+						"filters": {
+							"test": "is_skin_id",
+							"value": 2
+						},
+						"add": {
+							"component_groups": [
+								"transform_to_ice"
+							]
+						}
+					},
+					{
+						"filters": {
+							"test": "is_skin_id",
+							"value": 3
+						},
+						"add": {
+							"component_groups": [
+								"transform_to_lightning"
+							]
+						}
+					},
+					{
+						"filters": {
+							"test": "is_skin_id",
+							"value": 4
+						},
+						"add": {
+							"component_groups": [
+								"transform_to_poison"
+							]
+						}
+					}
+				]
+			}
+		}
+	}
+}

@@ -1,0 +1,45 @@
+{
+	"format_version": "1.16.100",
+	"minecraft:feature_rules": {
+		"description": {
+			"identifier": "petyma:abyssal_swamp_trees",
+			"places_feature": "petyma:swamp_tree_abyssal"
+		},
+		"conditions": {
+			"placement_pass": "surface_pass",
+			"minecraft:biome_filter": {
+				"all_of": [
+					{
+						"test": "has_biome_tag",
+						"operator": "==",
+						"value": "swampland"//swampland
+					}
+				]
+			}
+		},
+		"distribution": {
+			"iterations": 1.0,
+			"x": {
+				"distribution": "uniform",
+				"extent": [
+					0,
+					16
+				]
+			},
+			"y": {
+				"distribution": "uniform",
+				"extent": [
+					"query.above_top_solid(variable.worldx, variable.worldz)",
+					"query.above_top_solid(variable.worldx, variable.worldz)"
+				]
+			},
+			"z": {
+				"distribution": "uniform",
+				"extent": [
+					0,
+					16
+				]
+			}
+		}
+	}
+}

@@ -1,0 +1,27 @@
+{
+	"format_version": "1.12",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "ck:fire_metal_boots"
+		},
+
+		"tags": ["ck_dracolyte_forge"],
+		"pattern": [
+			"AAA",
+			"ABA",
+			"AAA"
+		],
+		"key": {
+			"A": {
+				"item": "ck:fire_dracolyte_crystal"
+			},
+			"B": {
+				"item": "ck:fire_dracolyte_boots"
+			}
+		},
+		"result": {
+			"item": "ck:fire_metal_boots"
+		}
+	}
+
+}

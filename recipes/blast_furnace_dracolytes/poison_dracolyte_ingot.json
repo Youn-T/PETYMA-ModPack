@@ -1,0 +1,13 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "ck:poison_ingot"
+    },
+    "tags": ["blast_furnace"],
+    "input": {
+      "item": "ck:poison_dracolyte"
+    },
+    "output": "ck:poison_ingot"
+  }
+}

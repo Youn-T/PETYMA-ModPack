@@ -1,0 +1,22 @@
+{
+    "format_version": "1.13.0",
+    "minecraft:vegetation_patch_feature": {
+        "description": {
+            "identifier": "petyma:abyssal_pool"
+        },
+        "replaceable_blocks": [
+            "minecraft:dirt",
+            "minecraft:grass_block"
+        ],
+        "ground_block": "ck:abyssal_grass",
+        "vegetation_feature": "petyma:abyssal_tree",
+        "surface": "floor",
+        "depth": 3,
+        "vertical_range": 5,
+        "vegetation_chance": 0.02,
+        "horizontal_radius": 10,
+        "extra_deep_block_chance": 0.8,
+        "extra_edge_column_chance": 100.0,
+        "waterlogged": false
+    }
+}

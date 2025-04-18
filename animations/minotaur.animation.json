@@ -1,0 +1,59 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.minotaur.attack_1": {
+	  "loop": false,
+      "timeline": {
+        "0.3149": [
+			"/summon ck:minotaur_knock_back ^ ^1 ^2.5 ck:mino_attack_1",
+			"/camerashake add @a[r=5] 0.2 0.4 positional"
+		]
+      },
+      "animation_length": 1.1667
+    },
+    "animation.minotaur.attack_2": {
+	  "loop": false,
+      "timeline": {
+        "0.44": [
+			"/summon ck:minotaur_knock_back ^ ^1 ^2.5 ck:mino_attack_2",
+			"/camerashake add @a[r=5] 0.2 0.4 positional"
+		]
+      },
+      "animation_length": 1.2333
+    },
+    "animation.minotaur.special_attack": {
+	  "loop": false,
+      "timeline": {
+        "1.729": [
+			"/summon ck:minotaur_knock_back ^ ^1 ^2.5 ck:mino_smash",
+			"/camerashake add @a[r=5] 0.2 0.6 positional"
+		]
+      },
+      "animation_length": 2.4333
+    },
+    "animation.minotaur.roar": {
+	  "loop": false,
+      "timeline": {
+          "0.3": [
+            "/event entity @e[type=ck:minotaur_knock_back,c=1] ck:despawn",
+            "/stopsound @p[r=30] mob.minotaur.fight",
+			"/summon ck:minotaur_knock_back ~~3~ ck:minotaur_sound_effect"
+		],
+        "1.96": [
+			"/camerashake add @a[r=8] 0.7 0.9 positional"
+		]
+      },
+      "animation_length": 3.3333
+    },
+    "animation.minotaur.death": {
+	  "loop": false,
+      "timeline": {
+          "0.3": [
+            "/event entity @e[type=ck:minotaur_knock_back,c=1] ck:despawn",
+            "/stopsound @p[r=30] mob.minotaur.fight"
+		]
+      },
+      "animation_length": 1
+    }
+  }
+}

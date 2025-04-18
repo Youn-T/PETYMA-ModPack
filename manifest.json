@@ -1,0 +1,45 @@
+{
+    "format_version":2,
+    "header":{
+        "description":"",
+        "name":"Petyma Modpack",
+        "uuid":"ed6ca3fd-d144-4041-8b21-6d8e542258ff",
+        "version":[1,0,0],
+        "min_engine_version": [1, 18, 0]
+    },
+    "modules":[
+        {
+            "description": "Example vanilla behavior pack",
+            "type": "data",
+            "uuid": "b5f0ce2d-6093-4fb8-a970-0b5d59febfcf",
+            "version": [0, 0, 1]
+        },
+        {
+			"description": "Gametest Module",
+			"type": "script",
+			"language": "javascript",
+			"entry": "scripts/main.js",
+			"uuid": "6028b8b4-ad1b-4c92-bed3-f4d857a427cf",
+			"version": [ 1, 0, 0 ]
+		}
+    ],
+    "metadata": {
+        "authors": [
+			"Gandulfe le Vrai"
+        ]
+    },
+	"dependencies": [
+        {
+			"module_name": "@minecraft/server",
+			"version": "2.0.0-beta"
+		},
+        {
+            "module_name": "@minecraft/server-ui",
+            "version": "2.0.0-beta"
+        },
+		{
+			"version": [1, 0, 0],
+			"uuid": "092b9f27-e5dc-4da4-a732-44badcbc2c89"
+		}
+	]
+}

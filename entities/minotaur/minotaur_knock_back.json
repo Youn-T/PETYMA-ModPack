@@ -1,0 +1,143 @@
+{
+	"format_version": "1.16.0",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "ck:minotaur_knock_back",
+			"is_spawnable": false,
+			"is_summonable": true,
+			"is_experimental": false
+		},
+		"component_groups": {
+		    "minotaur_sound_effect": {
+		        "minecraft:variant": {
+		            "value": 1
+		        }
+		    },
+			"mino_attack_1": {
+				"minecraft:behavior.knockback_roar": {
+					"priority": 0,
+					"attack_time": 0.1,
+					"cooldown_time": 0.1,
+					"duration": 0.1,
+					"knockback_damage": 2,
+					"knockback_strength": 2,
+					"knockback_range": 2,
+					"knockback_filters": {
+						"all_of": [{
+							"test": "is_family",
+							"subject": "other",
+							"operator": "!=",
+							"value": "minotaur"
+						}]
+					},
+					"on_roar_end": {
+						"event": "ck:despawn"
+					}
+				}
+			},
+			"mino_attack_2": {
+				"minecraft:behavior.knockback_roar": {
+					"priority": 0,
+					"attack_time": 0.1,
+					"cooldown_time": 0.1,
+					"duration": 0.1,
+					"knockback_damage": 4,
+					"knockback_strength": 1,
+					"knockback_range": 1,
+					"knockback_filters": {
+						"all_of": [{
+							"test": "is_family",
+							"subject": "other",
+							"operator": "!=",
+							"value": "minotaur"
+						}]
+					},
+					"on_roar_end": {
+						"event": "ck:despawn"
+					}
+				}
+			},
+			"mino_smash": {
+				"minecraft:behavior.knockback_roar": {
+					"priority": 0,
+					"attack_time": 0.1,
+					"cooldown_time": 0.1,
+					"duration": 0.1,
+					"knockback_damage": 6,
+					"knockback_strength": 4,
+					"knockback_range": 3,
+					"knockback_filters": {
+						"all_of": [{
+							"test": "is_family",
+							"subject": "other",
+							"operator": "!=",
+							"value": "minotaur"
+						}]
+					},
+					"on_roar_end": {
+						"event": "ck:despawn"
+					}
+				}
+			},
+			"despawn": {
+				"minecraft:instant_despawn": {}
+			}
+		},
+		"components": {
+			"minecraft:type_family": {
+				"family": ["despawn", "minotaur"]
+			},
+			"minecraft:scale": {
+				"value": 1
+			},
+			"minecraft:collision_box": {
+				"width": 0,
+				"height": 0
+			},
+			"minecraft:knockback_resistance": {
+				"value": 100
+			},
+			"minecraft:physics": {
+				"has_collision": false,
+				"has_gravity": false
+			},
+			"minecraft:pushable": {
+				"is_pushable": false,
+				"is_pushable_by_piston": false
+			},
+			"minecraft:damage_sensor": {
+				"triggers": [{
+					"on_damage": {},
+					"deals_damage": false
+				}]
+			}
+		},
+		"events": {
+		    "ck:minotaur_sound_effect": {
+				"add": {
+					"component_groups": ["minotaur_sound_effect"]
+				}
+			},
+			"ck:mino_attack_1": {
+				"add": {
+					"component_groups": ["mino_attack_1"]
+				}
+			},
+			"ck:mino_attack_2": {
+				"add": {
+					"component_groups": ["mino_attack_2"]
+				}
+			},
+			"ck:mino_smash": {
+				"add": {
+					"component_groups": ["mino_smash"]
+				}
+			},
+			"ck:despawn": {
+				"add": {
+					"component_groups": ["despawn"]
+				}
+			}
+		}
+	}
+}

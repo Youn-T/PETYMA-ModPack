@@ -1,0 +1,47 @@
+{
+    "format_version": "1.10.0",
+    "animation_controllers": {
+        "controller.animation.mob_fly": {
+            "initial_state": "default",
+            "states": {
+                "default":{
+                    "animations": [
+                        "fly_down"
+                    ],
+                    "transitions": [
+                        {"fly": "(query.is_jumping) "}
+                    ]
+                },
+                "fly": {
+                    "animations": [
+                        "fly_up"
+                    ],
+                    "transitions": [
+                        {"jump_cooldown": "variable.jump_cooldown = query.life_time; return (!query.is_jumping);"}
+                    ]
+                },
+                "jump_cooldown": {
+                    "animations": [
+                        "fly_down"
+                    ],
+                    "transitions": [
+                        {"test": "return query.is_jumping && query.life_time - variable.jump_cooldown < 0.5;"},
+                        {"default": "return !query.is_jumping && query.life_time - variable.jump_cooldown > 0.5;"}
+                    ]
+                },
+                "test":{
+                    "animations": [
+                        "fly_down"
+                    ],
+                    "transitions": [
+                        {"fly": "return query.life_time - variable.jump_cooldown > 1 && (query.is_jumping == 1.0);"}
+                    ],
+                    "on_entry": [
+                        "/event entity @e[family=player_control,c=1,r=4] ck:mob_gravity_false"],
+                    "on_exit": [
+                        "/event entity @e[family=player_control,c=1,r=4] ck:mob_gravity_true"]
+                }
+            }
+        }
+    }
+}

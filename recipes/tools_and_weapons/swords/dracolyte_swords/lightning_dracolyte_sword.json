@@ -1,0 +1,27 @@
+{
+	"format_version": "1.12",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "ck:lightning_dracolyte_sword"
+		},
+
+		"tags": ["ck_dracolyte_forge"],
+		"pattern": [
+			"  E",
+			" E ",
+			"I  "
+		],
+		"key": {
+			"E": {
+				"item": "ck:lightning_ingot"
+			},
+			"I": {
+				"item": "minecraft:stick"
+			}
+		},
+		"result": {
+			"item": "ck:lightning_dracolyte_sword"
+		}
+	}
+
+}

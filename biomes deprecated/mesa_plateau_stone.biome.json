@@ -1,0 +1,33 @@
+{
+  "mesa_plateau_stone": {
+    "format_version": "1.20.60",
+    "minecraft:mesa_surface": {
+      "top_material": "ck:fire_grass",
+      "mid_material": "ck:fire_stone",
+      "sea_floor_material": "minecraft:dirt",
+      "foundation_material": "ck:fire_stone",
+      "sea_material": "minecraft:lava",
+      "sea_floor_depth": 7,
+      "clay_material": "minecraft:netherrack",
+      "hard_clay_material": "ck:fire_grass",
+      "bryce_pillars": false,
+      "has_forest": false
+    },
+    "minecraft:overworld_generation_rules": {
+      "generate_for_climates": [
+        [
+          "medium",
+          1
+        ],
+        [
+          "warm",
+          1
+        ],
+        [
+          "cold",
+          1
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,955 @@
+{
+	"format_version": "1.16.0",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "ck:tamed_ice_wyvern",
+			"is_summonable": true,
+			"is_spawnable": false
+		},
+		"component_groups": {
+			"mob_rider_attack_on_ground": {
+				"minecraft:is_sheared":{},
+				"minecraft:spawn_entity": {
+				    "entities": [{
+					"min_wait_time": 0,
+					"max_wait_time": 0,
+					"single_use": true,
+					"spawn_entity": "ck:projectiles",
+					"spawn_event": "ck:ice_wyvern_on_ground",
+					"num_to_spawn": 2,
+					"should_leash": false
+				}]}
+			},
+			"mob_rider_attack_on_air": {
+				"minecraft:spawn_entity": {
+				    "entities": [{
+					"min_wait_time": 0,
+					"max_wait_time": 0,
+					"single_use": true,
+					"spawn_entity": "ck:projectiles",
+					"spawn_event": "ck:ice_wyvern_on_air",
+					"num_to_spawn": 1,
+					"should_leash": false
+				}]}
+			},
+			"family_sit": {
+				"minecraft:type_family": {
+					"family": ["tamed_ice_wyvern", "sitting"]
+				}
+			},
+			"family_player_control": {
+				"minecraft:type_family": {
+					"family": ["tamed_ice_wyvern", "player_control", "player_attack"]
+				}
+			},
+			"family_default": {
+				"minecraft:type_family": {
+					"family": ["tamed_ice_wyvern"]
+				}
+			},
+			"mob_follow_owner": {
+				"minecraft:behavior.follow_owner": {
+					"priority": 0,
+					"speed_multiplier": 1.3,
+					"start_distance": 18,
+					"stop_distance": 3
+				}
+			},
+			"mob_sittable": {
+				"minecraft:sittable": {
+					"sit_event": {
+						"event": "ck:sit"
+					},
+					"stand_event": {
+						"event": "ck:stand"
+					}
+				}
+			},
+			"mob_is_sleepable": {
+				"minecraft:behavior.nap": {
+					"priority": 1,
+					"cooldown_min": 15.0,
+					"cooldown_max": 30.0,
+					"mob_detect_dist": 8.0,
+					"mob_detect_height": 6.0,
+					"can_nap_filters": {
+						"all_of": [{
+								"test": "on_ground",
+								"subject": "self",
+								"operator": "==",
+								"value": true
+							},
+							{
+								"test": "is_weather",
+								"subject": "self",
+								"operator": "!=",
+								"value": "thunderstorm"
+							}
+						]
+					},
+					"wake_mob_exceptions": {
+						"any_of": [{
+								"test": "is_owner",
+								"subject": "player",
+								"operator": "equals",
+								"value": true
+							},
+							{
+								"test": "is_family",
+								"subject": "other",
+								"operator": "==",
+								"value": "tamed_ice_wyvern"
+							},
+							{
+								"test": "is_sneaking",
+								"subject": "other",
+								"operator": "==",
+								"value": true
+							}
+						]
+					}
+				},
+				"minecraft:interact": {
+					"interactions": [{
+						"on_interact": {
+							"filters": {
+								"all_of": [{
+										"test": "is_owner",
+										"subject": "player",
+										"operator": "equals",
+										"value": true
+									},
+									{
+										"test": "is_sleeping",
+										"subject": "self",
+										"operator": "equals",
+										"value": true
+									}
+								]
+							},
+							"event": "ck:mob_on_ground"
+						},
+						"interact_text": "action.interact.ck_wake_up",
+						"swing": true
+					}]
+				}
+			},
+			"mob_is_rideable": {
+				"minecraft:rideable": {
+					"seat_count": 1,
+					"crouching_skip_interact": true,
+					"rider_can_interact": false,
+					"family_types": ["player"],
+					"interact_text": "action.interact.ck_ride",
+					"seats": [{
+						"position": [0, 0.8, 0.2],
+						"min_rider_count": 0,
+						"max_rider_count": 0,
+						"rotate_rider_by": -90
+					}]
+				}
+			},
+			"mob_is_saddled": {
+				"minecraft:is_saddled": {},
+				"minecraft:input_ground_controlled": {},
+				"minecraft:behavior.player_ride_tamed": {}
+			},
+			"mob_not_saddled": {
+				"minecraft:behavior.mount_pathing": {
+					"priority": 5,
+					"speed_multiplier": 1.25,
+					"target_dist": 0.0,
+					"track_target": true
+				}
+			},
+			"mob_gravity_true": {
+				"minecraft:physics": {
+					"has_gravity": true
+				}
+			},
+			"mob_gravity_false": {
+				"minecraft:physics": {
+					"has_gravity": false
+				}
+			},
+			"mob_on_ground": {
+				"minecraft:movement": {
+					"value": 0.18
+				}
+			},
+			"mob_on_air": {
+				"minecraft:movement": {
+					"value": 0.48
+				}
+			},
+			"mob_is_chested": {
+				"minecraft:is_chested": {}
+			},
+			"mob_is_tamed": {
+				"minecraft:is_tamed": {},
+				"minecraft:health": {
+					"value": 150,
+					"max": 150
+				},
+				"minecraft:healable": {
+					"items": [{
+							"item": "apple",
+							"heal_amount": 3
+						}
+					]
+				},
+				"minecraft:leashable": {
+					"soft_distance": 5.0,
+					"hard_distance": 5.0,
+					"max_distance": 100.0,
+					"on_leash": {
+						"event": "ck:mob_on_leash",
+						"target": "self"
+					},
+					"on_unleash": {
+						"event": "ck:mob_on_unleash",
+						"target": "self"
+					}
+				},
+				"minecraft:inventory": {
+					"inventory_size": 20,
+					"container_type": "horse"
+				},
+				"minecraft:equippable": {
+					"slots": [{
+							"slot": 0,
+							"item": "saddle",
+							"accepted_items": [
+								"saddle"
+							],
+							"on_equip": {
+								"event": "ck:mob_is_saddled"
+							},
+							"on_unequip": {
+								"event": "ck:mob_is_unsaddled"
+							}
+						},
+						{
+							"slot": 1,
+							"item": "chest",
+							"accepted_items": [
+								"chest"
+							],
+							"on_equip": {
+								"event": "ck:mob_is_chested"
+							},
+							"on_unequip": {
+								"event": "ck:mob_is_unchested"
+							}
+						}
+					]
+				},
+				"minecraft:healable": {
+					"items": [{
+							"item": "wheat",
+							"heal_amount": 3
+						},
+						{
+							"item": "carrot",
+							"heal_amount": 8
+						},
+						{
+							"item": "apple",
+							"heal_amount": 2
+						}
+					]
+				}
+			},
+			"movement_timer": {
+				"minecraft:timer": {
+					"time": [5, 10],
+					"looping": true,
+					"time_down_event": {
+						"event": "ck:change_movement",
+						"target": "self"
+					}
+				}
+			},
+			"dragon_anchor": {
+				"minecraft:is_stackable": {},
+				"minecraft:physics": {
+					"has_gravity": false
+				},
+				"minecraft:movement": {
+					"value": 1.8
+				},
+				"minecraft:movement.glide": {
+					"start_speed": 1.2,
+					"speed_when_turning": 1.4
+				},
+				"minecraft:behavior.circle_around_anchor": {
+					"priority": 3,
+					"radius_change": 1.0,
+					"radius_adjustment_chance": 0.004,
+					"height_adjustment_chance": 0.002857,
+					"goal_radius": 1.0,
+					"angle_change": 15.0,
+					"radius_range": [20.0, 40.0],
+					"height_offset_range": [-4.0, 5.0],
+					"height_above_target_range": [15.0, 30.0]
+				},
+				"minecraft:attack": {
+					"damage": [8, 12]
+				},
+				"minecraft:behavior.swoop_attack": {
+					"priority": 1,
+					"damage_reach": 1.2,
+					"speed_multiplier": 1.0,
+					"delay_range": [10.0, 20.0]
+				}
+			},
+			"dragon_fly": {
+				"minecraft:is_sheared": {},
+				"minecraft:movement.generic": {
+					"max_turn": 15.0
+				},
+				"minecraft:navigation.float": {
+					"can_path_over_water": true,
+					"can_sink": true,
+					"avoid_sun": false,
+					"can_pass_doors": false,
+					"can_open_doors": false,
+					"avoid_water": true,
+					"avoid_portals": true
+				},
+				"minecraft:flying_speed": {
+					"value": 0.005
+				},
+				"minecraft:behavior.float_wander": {
+					"priority": 0,
+					"xz_dist": 15,
+					"y_dist": 3,
+					"y_offset": 0.0
+				},
+				"minecraft:movement": {
+					"value": 0.05
+				},
+				"minecraft:can_fly": {},
+				"minecraft:shooter": {
+					"def": "ck:projectiles"
+				},
+				"minecraft:behavior.ranged_attack": {
+					"priority": 1,
+					"attack_radius": 64,
+					"burst_interval": 0,
+					"charge_shoot_trigger": 2.4,
+					"charge_charged_trigger": 0.01
+				}
+			},
+			"dragon_walking": {
+				"minecraft:navigation.walk": {
+					"can_path_over_water": true,
+					"avoid_water": true,
+					"avoid_damage_blocks": true
+				},
+				"minecraft:movement": {
+					"value": 0.25
+				},
+				"minecraft:attack": {
+					"damage": [8, 25]
+				},
+				"minecraft:behavior.delayed_attack": {
+					"priority": 0,
+					"reach_multiplier": 1.3,
+					"speed_multiplier": 1.5,
+					"attack_duration": 1.0,
+					"hit_delay_pct": 0.5,
+					"track_target": true
+				},
+				"minecraft:behavior.random_stroll": {
+					"priority": 4
+				},
+				"minecraft:physics": {},
+				"minecraft:movement.basic": {}
+			}
+		},
+		"components": {
+			"minecraft:damage_sensor": {
+				"triggers": [{
+					"cause": "fall",
+					"deals_damage": false
+				}]
+			},
+			"minecraft:behavior.look_at_player": {
+				"priority": 8,
+				"look_distance": 8
+			},
+			"minecraft:behavior.random_look_around": {
+				"priority": 8
+			},
+			"minecraft:behavior.owner_hurt_by_target": {
+				"priority": 3
+			},
+			"minecraft:behavior.hurt_by_target": {
+				"priority": 1
+			},
+			"minecraft:behavior.owner_hurt_target": {
+				"priority": 2,
+				"entity_types": [{
+					"filters": {
+						"test": "has_component",
+						"subject": "other",
+						"operator": "!=",
+						"value": "minecraft:is_tamed"
+					},
+					"max_dist": 15
+				}]
+			},
+			"minecraft:can_power_jump": {},
+			"minecraft:horse.jump_strength": {
+				"value": {
+					"range_min": 0.0,
+					"range_max": 0.0
+				}
+			},
+			"minecraft:behavior.stay_while_sitting": {
+				"priority": 0
+			},
+			"minecraft:physics": {},
+			"minecraft:scale": {
+				"value": 4.0
+			},
+			"minecraft:collision_box": {
+				"width": 0.7,
+				"height": 0.7
+			},
+			"minecraft:breathable": {
+				"total_supply": 15,
+				"suffocate_time": 0
+			},
+			"minecraft:hurt_on_condition": {
+				"damage_conditions": [{
+					"filters": {
+						"test": "in_lava",
+						"subject": "self",
+						"operator": "==",
+						"value": true
+					},
+					"cause": "lava",
+					"damage_per_tick": 4
+				}]
+			},
+			"minecraft:pushable": {
+				"is_pushable": true,
+				"is_pushable_by_piston": true
+			},
+			"minecraft:experience_reward": {
+				"on_death": "query.last_hit_by_player ? Math.Random(30,150) : 0"
+			},
+			"minecraft:loot": {
+				"table": "loot_tables/entities/tamed_ice_wyvern.json"
+			},
+			"minecraft:behavior.float": {
+				"priority": 0
+			},
+			"minecraft:knockback_resistance": {
+				"value": 100,
+				"max": 100
+			},
+			"minecraft:health": {
+				"value": 300,
+				"max": 300
+			},
+			"minecraft:fire_immune": true,
+			"minecraft:follow_range": {
+				"value": 64
+			},
+			"minecraft:jump.static": {},
+			"minecraft:can_climb": {},
+			"minecraft:environment_sensor": {
+				"triggers": [
+					{
+						"filters": {
+							"all_of": [{
+									"test": "rider_count",
+									"operator": ">",
+									"value": 0
+								},
+								{
+									"test": "on_ground",
+									"operator": "==",
+									"value": true
+								}
+							]
+						},
+						"event": "ck:mob_on_ground"
+					},
+					{
+						"filters": {
+							"all_of": [{
+									"test": "rider_count",
+									"operator": ">",
+									"value": 0
+								},
+								{
+									"test": "on_ground",
+									"operator": "==",
+									"value": false
+								}
+							]
+						},
+						"event": "ck:mob_on_air"
+					},
+					{
+						"filters": {
+							"all_of": [{
+									"test": "rider_count",
+									"operator": "<=",
+									"value": 0
+								},
+								{
+									"test": "is_sleeping",
+									"operator": "!=",
+									"value": true
+								},
+								{
+									"test": "is_family",
+									"operator": "!=",
+									"value": "sitting"
+								}
+							]
+						},
+						"event": "ck:default"
+					},
+					{
+						"filters": {
+							"all_of": [{
+								"test": "is_sleeping"
+							}]
+						},
+						"event": "ck:mob_sleeping"
+					}
+				]
+			}
+		},
+		"events": {
+			"minecraft:entity_spawned": {
+				"add": {
+					"component_groups": [
+						"mob_is_tamed", "dragon_walking", "movement_timer"
+					]
+				}
+			},
+			"ck:mob_gravity_true": {
+				"remove": {
+					"component_groups": [
+						"mob_gravity_false"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"mob_gravity_true"
+					]
+				}
+			},
+			"ck:mob_gravity_false": {
+				"remove": {
+					"component_groups": [
+						"mob_gravity_true"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"mob_gravity_false"
+					]
+				},
+				"queue_command": {
+					"command": [
+						"effect @s clear",
+						"tp @s ~~~"
+					]
+				}
+			},
+			"ck:mob_on_leash": {
+				"remove": {
+					"component_groups": [
+						"mob_follow_owner",
+						"movement_timer",
+						"dragon_anchor",
+						"dragon_fly",
+						"mob_gravity_false"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"dragon_walking",
+						"mob_gravity_true"
+					]
+				}
+			},
+			"ck:mob_on_unleash": {
+				"sequence": [
+					{
+						"filters": {
+							"test": "has_component",
+							"value": "minecraft:is_saddled"
+						},
+						"add": {
+							"component_groups": [
+								"mob_follow_owner"
+							]
+						}
+					},
+					{
+						"add": {
+							"component_groups": [
+								"movement_timer"
+							]
+						}
+					}
+				]
+			},
+			"ck:mob_is_saddled": {
+				"remove": {
+					"component_groups": [
+						"mob_not_saddled"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"mob_is_saddled",
+						"mob_follow_owner"
+					]
+				}
+			},
+			"ck:mob_is_unsaddled": {
+				"remove": {
+					"component_groups": [
+						"mob_is_saddled",
+						"mob_follow_owner"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"mob_not_saddled"
+					]
+				}
+			},
+			"ck:mob_is_chested": {
+				"add": {
+					"component_groups": [
+						"mob_is_chested"
+					]
+				}
+			},
+			"ck:mob_is_unchested": {
+				"remove": {
+					"component_groups": [
+						"mob_is_chested"
+					]
+				}
+			},
+			"ck:mob_on_ground": {
+				"remove": {
+					"component_groups": [
+						"mob_on_air",
+						"family_default",
+						"mob_sittable",
+						"mob_is_sleepable",
+						"dragon_anchor",
+						"dragon_fly",
+						"movement_timer",
+						"mob_rider_attack_on_ground"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"mob_on_ground",
+						"family_player_control"
+					]
+				}
+			},
+			"ck:mob_on_air": {
+				"remove": {
+					"component_groups": [
+						"mob_on_ground",
+						"family_default",
+						"mob_sittable",
+						"dragon_anchor",
+						"dragon_fly",
+						"mob_is_sleepable",
+						"movement_timer",
+						"mob_rider_attack_on_air"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"mob_on_air",
+						"family_player_control"
+					]
+				}
+			},
+			"ck:mob_sleeping": {
+				"remove": {
+					"component_groups": [
+						"mob_is_rideable",
+						"mob_sittable",
+						"movement_timer"
+					]
+				}
+			},
+			"ck:sit": {
+				"remove": {
+					"component_groups": [
+						"mob_is_rideable",
+						"mob_is_sleepable",
+						"family_default",
+						"movement_timer"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"family_sit"
+					]
+				}
+			},
+			"ck:stand": {
+				"sequence": [{
+						"filters": {
+							"all_of": [{
+								"test": "has_component",
+								"operator": "==",
+								"value": "minecraft:is_tamed"
+							}]
+						},
+						"add": {
+							"component_groups": [
+								"mob_is_rideable"
+							]
+						}
+					},
+					{
+						"filters": {
+							"all_of": [{
+									"test": "has_component",
+									"operator": "!=",
+									"value": "minecraft:timer"
+								},
+								{
+									"test": "is_leashed",
+									"operator": "!=",
+									"value": true
+								}
+							]
+						},
+						"add": {
+							"component_groups": [
+								"movement_timer"
+							]
+						}
+					},
+					{
+						"remove": {
+							"component_groups": [
+								"family_sit"
+							]
+						},
+						"add": {
+							"component_groups": [
+								"mob_is_sleepable",
+								"family_default"
+							]
+						}
+					}
+				]
+			},
+			"ck:mob_rider_attack": {
+				"sequence": [{
+						"filters": {
+							"all_of": [{
+									"test": "rider_count",
+									"operator": ">",
+									"value": 0
+								},
+								{
+									"test": "on_ground",
+									"operator": "==",
+									"value": true
+								}
+							]
+						},
+						"add": {
+							"component_groups": [
+								"mob_rider_attack_on_ground"
+							]
+						},
+						"queue_command": {
+							"command": [
+								"playanimation @e[type=ck:tamed_ice_wyvern,c=1] animation.wyvern.breath_attack"
+							]
+						}
+					},
+					{
+						"filters": {
+							"all_of": [{
+									"test": "rider_count",
+									"operator": ">",
+									"value": 0
+								},
+								{
+									"test": "on_ground",
+									"operator": "!=",
+									"value": true
+								}
+							]
+						},
+						"add": {
+							"component_groups": [
+								"mob_rider_attack_on_air"
+							]
+						}
+					}
+				]
+			},
+			"ck:default": {
+				"sequence": [{
+						"filters": {
+							"all_of": [
+								{
+									"test": "has_component",
+									"operator": "!=",
+									"value": "minecraft:rideable"
+								}
+							]
+						},
+						"add": {
+							"component_groups": [
+								"mob_is_rideable"
+							]
+						}
+					},
+					{
+						"filters": {
+							"all_of": [
+								{
+									"test": "has_component",
+									"operator": "!=",
+									"value": "minecraft:sittable"
+								}
+							]
+						},
+						"add": {
+							"component_groups": [
+								"mob_sittable"
+							]
+						}
+					},
+					{
+						"filters": {
+							"test": "has_component",
+							"operator": "!=",
+							"value": "minecraft:behavior.nap"
+						},
+						"add": {
+							"component_groups": [
+								"mob_is_sleepable"
+							]
+						}
+					},
+					{
+						"filters": {
+							"all_of": [{
+									"test": "has_component",
+									"operator": "!=",
+									"value": "minecraft:timer"
+								},
+								{
+									"test": "is_leashed",
+									"operator": "!=",
+									"value": true
+								}
+							]
+						},
+						"add": {
+							"component_groups": [
+								"movement_timer"
+							]
+						}
+					},
+					{
+						"filters": {
+							"test": "is_family",
+							"operator": "==",
+							"value": "player_control"
+						},
+						"remove": {
+							"component_groups": [
+								"family_player_control",
+								"mob_on_air"
+							]
+						},
+						"add": {
+							"component_groups": [
+								"family_default",
+								"mob_on_ground",
+								"mob_gravity_true"
+							]
+						}
+					}
+				]
+			},
+			"ck:change_movement": {
+				"sequence": [{
+						"filters": {
+							"all_of": [{
+									"test": "is_sleeping",
+									"operator": "!=",
+									"value": true
+								}
+							]
+						},
+						"randomize": [{
+								"weight": 25,
+								"remove": {
+									"component_groups": ["dragon_anchor", "dragon_fly"]
+								},
+								"add": {
+									"component_groups": ["dragon_walking", "mob_is_sleepable"]
+								}
+							},
+							{
+								"filters": {
+									"all_of": [{
+											"test": "is_underground",
+											"operator": "!=",
+											"value": true
+										}
+									]
+								},
+								"weight": 25,
+								"remove": {
+									"component_groups": ["dragon_anchor", "dragon_walking", "mob_is_sleepable"]
+								},
+								"add": {
+									"component_groups": ["dragon_fly"]
+								}
+							},
+							{
+								"filters": {
+									"all_of": [{
+											"test": "is_underground",
+											"operator": "!=",
+											"value": true
+										}
+									]
+								},
+								"weight": 25,
+								"remove": {
+									"component_groups": ["dragon_fly", "dragon_walking", "mob_is_sleepable"]
+								},
+								"add": {
+									"component_groups": ["dragon_anchor"]
+								}
+							}
+						]
+					}
+				]
+			}
+		}
+	}
+}

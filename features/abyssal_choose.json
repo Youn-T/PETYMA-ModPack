@@ -1,0 +1,12 @@
+{
+    "format_version": "1.13.0",
+    "minecraft:weighted_random_feature": {
+      "description": {
+        "identifier": "petyma:abyssal_choose"
+      },
+      "features": [
+        [ "petyma:abyssal_nest", 1 ],
+        [ "petyma:abyssal_pool", 9 ]
+      ]
+    }
+  }

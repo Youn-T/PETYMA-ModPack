@@ -1,0 +1,69 @@
+{
+	"format_version": "1.20.80",
+	"minecraft:block": {
+		"description": {
+			"identifier": "ck:abyssal_log",
+			"menu_category": {
+				"category": "nature",
+				"group": "itemGroup.name.log"
+			},
+			"traits": {
+				"minecraft:placement_direction": {
+					"enabled_states": ["minecraft:facing_direction"]
+				}
+			}
+		},
+		"components": {
+			"tag:wood": {},
+			"tag:ck:dracolyte_woods": {},
+			"tag:ck:abyssal_dracolyte_woods": {},
+			"minecraft:destructible_by_mining": {
+				"seconds_to_destroy": 1.0
+			},
+			"minecraft:map_color": "#00ff00",
+			"minecraft:geometry": "geometry.block",
+			"minecraft:material_instances": {
+				"*": {
+					"texture": "abyssal_log_side",
+					"render_method": "opaque"
+				},
+				"ends": {
+					"texture": "abyssal_log_top",
+					"render_method": "opaque"
+				},
+				"up": "ends",
+				"down": "ends"
+			},
+			"minecraft:flammable": {
+				"flame_odds": 50,
+				"burn_odds": 0
+			}
+		},
+		"permutations": [
+			{
+				"condition": "q.block_state('minecraft:facing_direction') == 'up' || q.block_state('minecraft:facing_direction') == 'down' ",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [0, 0, 0]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:facing_direction') == 'east' || q.block_state('minecraft:facing_direction') == 'west' ",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [0, 0, 90]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:facing_direction') == 'north' || q.block_state('minecraft:facing_direction') == 'south' ",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [90, 0, 0]
+					}
+				}
+			}
+		]
+	}
+}

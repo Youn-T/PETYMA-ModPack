@@ -1,0 +1,17 @@
+{
+	"format_version": "1.20.30",
+	"minecraft:item": {
+		"description": {
+			"identifier": "petyma:pytcoin",
+			"category": "Items"
+		},
+		"components": {
+			"minecraft:glint": {
+				"value" : true
+			},
+			"minecraft:icon": {
+			    "texture": "pytcoin"
+			}
+		}
+	}
+}

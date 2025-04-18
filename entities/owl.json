@@ -1,0 +1,383 @@
+{
+	"format_version": "1.17.0",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "ck:owl",
+			"is_spawnable": true,
+			"is_summonable": true,
+			"is_experimental": false
+		},
+
+		"component_groups": {
+			"skin_0": {
+				"minecraft:skin_id": {
+					"value": 0
+				}
+			},
+			"skin_1": {
+				"minecraft:skin_id": {
+					"value": 1
+				}
+			},
+			"skin_2": {
+				"minecraft:skin_id": {
+					"value": 2
+				}
+			},
+			"skin_3": {
+				"minecraft:skin_id": {
+					"value": 3
+				}
+			},
+			"night_owl": {
+				"minecraft:is_sheared": {},
+				"minecraft:physics": {
+					"has_gravity": false
+				},
+				"minecraft:movement": {
+					"value": 1.8
+				},
+				"minecraft:movement.glide": {
+					"start_speed": 0.5,
+					"speed_when_turning": 0.8
+				},
+				"minecraft:follow_range": {
+					"value": 1024,
+					"max": 1024
+				},
+				"minecraft:behavior.circle_around_anchor": {
+					"priority": 3,
+					"radius_change": 1.0,
+					"radius_adjustment_chance": 0.004,
+					"height_adjustment_chance": 0.002857,
+					"goal_radius": 1.0,
+					"angle_change": 15.0,
+					"radius_range": [10.0, 20.0],
+					"height_offset_range": [-4.0, 5.0],
+					"height_above_target_range": [10.0, 15.0]
+				}
+			},
+			"day_owl": {
+				"minecraft:behavior.random_fly": {
+					"priority": 2,
+					"xz_dist": 15,
+					"y_dist": 3,
+					"y_offset": 0,
+					"speed_multiplier": 1.0,
+					"can_land_on_trees": true,
+					"avoid_damage_blocks": true
+				},
+				"minecraft:flying_speed": {
+					"value": 0.04
+				},
+				"minecraft:movement": {
+					"value": 0.0
+				},
+				"minecraft:movement.generic": {
+					"max_turn": 15.0
+				},
+				"minecraft:behavior.nap": {
+					"priority": 1,
+					"cooldown_min": 15.0,
+					"cooldown_max": 30.0,
+					"mob_detect_dist": 12.0,
+					"mob_detect_height": 6.0,
+					"can_nap_filters": {
+						"all_of": [{
+								"test": "in_water",
+								"subject": "self",
+								"operator": "==",
+								"value": false
+							},
+							{
+								"test": "on_ground",
+								"subject": "self",
+								"operator": "==",
+								"value": true
+							},
+							{
+								"test": "is_weather",
+								"subject": "self",
+								"operator": "!=",
+								"value": "thunderstorm"
+							},
+							{
+								"test": "is_daytime"
+							}
+						]
+					},
+					"wake_mob_exceptions": {
+						"any_of": [{
+								"test": "is_owner",
+								"subject": "player",
+								"operator": "equals",
+								"value": true
+							},
+							{
+								"test": "is_family",
+								"subject": "other",
+								"operator": "==",
+								"value": "owl"
+							},
+							{
+								"test": "is_sneaking",
+								"subject": "other",
+								"operator": "==",
+								"value": true
+							}
+						]
+					}
+				},
+				"minecraft:jump.static": {},
+				"minecraft:can_fly": {},
+				"minecraft:navigation.fly": {
+					"can_path_over_water": true,
+					"can_path_from_air": true,
+					"can_sink": false
+				},
+				"minecraft:physics": {},
+				"minecraft:environment_sensor": {
+					"triggers": [{
+							"filters": {
+								"all_of": [{
+										"test": "is_avoiding_mobs",
+										"operator": "==",
+										"value": true
+									},
+									{
+										"test": "is_underground",
+										"operator": "==",
+										"value": false
+									}
+								]
+							},
+							"event": "ck:timer"
+						},
+						{
+							"filters": {
+								"all_of": [{
+										"test": "is_daytime",
+										"operator": "==",
+										"value": false
+									},
+									{
+										"test": "is_underground",
+										"operator": "==",
+										"value": false
+									}
+								]
+							},
+							"event": "ck:night_owl"
+						}
+					]
+				}
+			},
+			"night_sensor": {
+				"minecraft:environment_sensor": {
+					"triggers": [{
+						"filters": {
+							"any_of": [{
+									"test": "is_daytime",
+									"operator": "==",
+									"value": true
+								},
+								{
+									"test": "is_underground",
+									"operator": "==",
+									"value": true
+								}
+							]
+						},
+						"event": "ck:day_owl"
+					}]
+				}
+			},
+			"timer": {
+				"minecraft:timer": {
+					"looping": false,
+					"time": 1.5,
+					"time_down_event": {
+						"event": "ck:escape"
+					}
+				}
+			},
+			"timer_1": {
+				"minecraft:timer": {
+					"looping": false,
+					"time": 20.0,
+					"time_down_event": {
+						"event": "ck:day_owl"
+					}
+				}
+			}
+		},
+
+		"events": {
+			"minecraft:entity_spawned": {
+				"sequence": [{
+						"add": {
+							"component_groups": ["day_owl"]
+						}
+
+					},
+					{
+						"randomize": [{
+								"weight": 25,
+								"add": {
+									"component_groups": ["skin_0"]
+								}
+							},
+							{
+								"weight": 25,
+								"add": {
+									"component_groups": ["skin_1"]
+								}
+							},
+							{
+								"weight": 25,
+								"add": {
+									"component_groups": ["skin_2"]
+								}
+							},
+							{
+								"weight": 25,
+								"add": {
+									"component_groups": ["skin_3"]
+								}
+							}
+
+						]
+					}
+
+				]
+			},
+			"ck:day_owl": {
+				"remove": {
+					"component_groups": [
+						"night_owl",
+						"night_sensor",
+						"timer"
+					]
+				},
+				"add": {
+					"component_groups": ["day_owl"]
+				}
+			},
+			"ck:night_owl": {
+				"remove": {
+					"component_groups": ["day_owl"]
+				},
+				"add": {
+					"component_groups": ["night_owl", "night_sensor"]
+				}
+			},
+			"ck:timer": {
+				"add": {
+					"component_groups": ["timer"]
+				}
+			},
+			"ck:escape": {
+				"remove": {
+					"component_groups": ["timer", "day_owl"]
+				},
+				"add": {
+					"component_groups": ["night_owl", "timer_1"]
+				}
+			}
+		},
+
+		"components": {
+			"minecraft:experience_reward": {
+				"on_death": "query.last_hit_by_player ? Math.Random(3,8) : 0"
+			},
+			"minecraft:type_family": {
+				"family": ["owl"]
+			},
+			"minecraft:damage_sensor": {
+				"triggers": {
+					"cause": "fall",
+					"deals_damage": false
+				}
+			},
+			"minecraft:loot": {
+				"table": "loot_tables/entities/owl.json"
+			},
+			"minecraft:nameable": {},
+			"minecraft:health": {
+				"value": 12,
+				"max": 12
+			},
+			"minecraft:hurt_on_condition": {
+				"damage_conditions": [{
+					"filters": {
+						"test": "in_lava",
+						"subject": "self",
+						"operator": "==",
+						"value": true
+					},
+					"cause": "lava",
+					"damage_per_tick": 4
+				}]
+			},
+			"minecraft:pushable": {
+				"is_pushable": true,
+				"is_pushable_by_piston": true
+			},
+			"minecraft:conditional_bandwidth_optimization": {},
+			"minecraft:breathable": {
+				"total_supply": 15,
+				"suffocate_time": 0,
+				"breathes_air": true,
+				"breathes_water": false
+			},
+			"minecraft:collision_box": {
+				"width": 0.6,
+				"height": 0.7
+			},
+			"minecraft:behavior.avoid_mob_type": {
+				"entity_types": [{
+						"filters": [{
+							"all_of": [{
+									"test": "is_family",
+									"subject": "other",
+									"value": "player"
+								},
+								{
+									"test": "is_sleeping",
+									"subject": "self",
+									"operator": "equals",
+									"value": false
+								},
+								{
+									"test": "is_sneaking",
+									"subject": "other",
+									"operator": "equals",
+									"value": false
+								}
+
+							]
+						}],
+						"max_dist": 8,
+						"walk_speed_multiplier": 1.4,
+						"sprint_speed_multiplier": 1.4
+					},
+					{
+						"filters": {
+							"test": "is_family",
+							"subject": "other",
+							"value": "monster"
+						},
+						"max_dist": 8
+					}
+				],
+				"priority": 0
+			}
+		}
+	}
+}
+/*__________________________________________________
+||                                                  ||
+||             Expansive Fantasy By:                ||
+||              Dragon Force Studio                 ||
+|| DO NOT Use or Modfiy Any Code Without Permission ||
+||__________________________________________________||*/

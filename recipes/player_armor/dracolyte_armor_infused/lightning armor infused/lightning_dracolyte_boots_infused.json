@@ -1,0 +1,30 @@
+{
+	"format_version": "1.12",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "ck:lightning_dracolyte_boots_infused"
+		},
+
+		"tags": ["ck_rune_stone_table"],
+		"pattern": [
+			" A ",
+			" B ",
+			" C "
+		],
+		"key": {
+			"A": {
+				"item": "petyma:infusing_template_lightning"
+			},
+			"B": {
+				"item": "ck:lightning_essence"
+			},
+			"C": {
+				"item": "ck:lightning_dracolyte_boots"
+			}
+		},
+		"result": {
+			"item": "ck:lightning_dracolyte_boots_infused"
+		}
+	}
+
+}

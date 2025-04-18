@@ -1,0 +1,26 @@
+{
+	"format_version": "1.12",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "ck:poison_dagger"
+		},
+
+		"tags": ["ck_dracolyte_forge"],
+		"pattern": [
+			"   ",
+			" P ",
+			"L  "
+		],
+		"key": {
+			"P": {
+				"item": "ck:poison_ingot"
+			},
+			"L": {
+				"item": "minecraft:stick"
+			}
+		},
+		"result": {
+			"item": "ck:poison_dagger"
+		}
+	}
+}

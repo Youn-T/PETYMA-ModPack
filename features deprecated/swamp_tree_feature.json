@@ -1,0 +1,283 @@
+{
+	"format_version": "1.13.0",
+	"minecraft:tree_feature": {
+		"description": {
+			"identifier": "ck:swamp_tree_feature"
+		},
+		"may_grow_through": [
+			"minecraft:dirt",
+			"minecraft:grass",
+			{
+				"name": "minecraft:dirt",
+				"states": {
+					"dirt_type": "coarse"
+				}
+			},
+			{
+				"name": "minecraft:bamboo"
+			},
+			{
+				"name": "minecraft:bamboo_sapling"
+			},
+			{
+				"name": "minecraft:tallgrass"
+			},
+			{
+				"name": "minecraft:snow"
+			},
+			{
+				"name": "minecraft:snow_layer"
+			},
+			{
+				"name": "minecraft:double_plant"
+			},
+			{
+				"name": "minecraft:air"
+			},
+			{
+				"name": "minecraft:log"
+			},
+			{
+				"name": "minecraft:log2"
+			},
+			{
+				"name": "minecraft:mud"
+			}
+		],
+		"may_grow_on": [
+			"minecraft:dirt",
+			"ck:abyssal_grass",
+			"minecraft:grass",
+			"minecraft:podzol",
+			"minecraft:dirt_with_roots",
+			"minecraft:moss_block",
+			{
+				"name": "minecraft:dirt",
+				"states": {
+					"dirt_type": "coarse"
+				}
+			},
+			{
+				"name": "minecraft:farmland",
+				"states": {
+					"moisturized_amount": 0
+				}
+			},
+			{
+				"name": "minecraft:farmland",
+				"states": {
+					"moisturized_amount": 1
+				}
+			},
+			{
+				"name": "minecraft:farmland",
+				"states": {
+					"moisturized_amount": 2
+				}
+			},
+			{
+				"name": "minecraft:farmland",
+				"states": {
+					"moisturized_amount": 3
+				}
+			},
+			{
+				"name": "minecraft:farmland",
+				"states": {
+					"moisturized_amount": 4
+				}
+			},
+			{
+				"name": "minecraft:farmland",
+				"states": {
+					"moisturized_amount": 5
+				}
+			},
+			{
+				"name": "minecraft:farmland",
+				"states": {
+					"moisturized_amount": 6
+				}
+			},
+			{
+				"name": "minecraft:farmland",
+				"states": {
+					"moisturized_amount": 7
+				}
+			},
+			{
+				"name": "minecraft:mud"
+			}
+		],
+		"base_cluster": {
+			"may_replace": [
+				{
+					"name": "minecraft:dirt"
+				},
+				{
+					"name": "minecraft:grass"
+				},
+				{
+					"name": "minecraft:clay"
+				},
+				{
+					"name": "minecraft:gravel"
+				}
+			],
+			"num_clusters": 3,
+			"cluster_radius": 3
+		},
+		"trunk": {
+			"trunk_height": {
+				"range_min": 4,
+				"range_max": 7
+			},
+			"can_be_submerged": {
+				"max_depth": 1.0
+			},
+			"trunk_block": "ck:abyssal_log",
+			"trunk_decoration": {
+				"decoration_chance": 0.5,
+				"decoration_block": "ck:abyssal_crystal_block",
+				"num_steps": 2,
+				"step_direction": "up"
+			}
+		},
+		// "canopy": {
+		// 	"canopy_offset": {
+		// 		"min": 1,
+		// 		"max": 3
+		// 	},
+		// 	"min_width": 3,
+		// 	"canopy_slope": {
+		// 		"rise": 1,
+		// 		"run": 3
+		// 	},
+		// 	"variation_chance": [
+		// 		0.8,
+		// 		0.6,
+		// 		0.4
+		// 	],
+		// 	"leaf_block": "minecraft:oak_leaves",
+		// 	"canopy_decoration": {
+		// 		"decoration_chance": 0.2,
+		// 		"decoration_block": "minecraft:vines",
+		// 		"num_steps": 3,
+		// 		"step_direction": "down"
+		// 	}
+		// },
+		"canopy": {
+			"canopy_offset": {
+				"min": -3,
+				"max": 0
+			},
+			"min_width": 2,
+			"variation_chance": [
+				{
+					"numerator": 1,
+					"denominator": 2
+				},
+				{
+					"numerator": 1,
+					"denominator": 2
+				},
+				{
+					"numerator": 1,
+					"denominator": 2
+				},
+				{
+					"numerator": 1,
+					"denominator": 1
+				}
+			],
+			"leaf_block": {
+				"name": "minecraft:leaves",
+				"states": {
+					"old_leaf_type": "oak"
+				}
+			},
+			"canopy_decoration": {
+				"decoration_chance": 50.0,
+				"decoration_block": "minecraft:vine",
+				"num_steps": 20,
+				"step_direction": "down"
+			}
+		},
+		"may_replace": [
+			"minecraft:air",
+			{
+				"name": "minecraft:leaves",
+				"states": {
+					"old_leaf_type": "oak"
+				}
+			},
+			{
+				"name": "minecraft:leaves",
+				"states": {
+					"old_leaf_type": "spruce"
+				}
+			},
+			{
+				"name": "minecraft:leaves",
+				"states": {
+					"old_leaf_type": "birch"
+				}
+			},
+			{
+				"name": "minecraft:leaves",
+				"states": {
+					"old_leaf_type": "jungle"
+				}
+			},
+			{
+				"name": "minecraft:leaves2",
+				"states": {
+					"new_leaf_type": "acacia"
+				}
+			},
+			{
+				"name": "minecraft:leaves2",
+				"states": {
+					"new_leaf_type": "dark_oak"
+				}
+			},
+			{
+				"name": "minecraft:tallgrass"
+			},
+			{
+				"name": "minecraft:bamboo"
+			},
+			{
+				"name": "minecraft:bamboo_sapling"
+			},
+			{
+				"name": "minecraft:vine"
+			},
+			{
+				"name": "minecraft:cocoa"
+			},
+			{
+				"name": "minecraft:mangrove_leaves"
+			},
+			{
+				"name": "minecraft:mangrove_roots"
+			},
+			{
+				"name": "minecraft:azalea_leaves"
+			},
+			{
+				"name": "minecraft:double_plant"
+			},
+			{
+				"name": "minecraft:water"
+			},
+			{
+				"name": "minecraft:waterlily"
+			},
+			{
+				"name": "minecraft:snow_layer"
+			}
+		],
+		"base_block": "minecraft:mud"
+	}
+}

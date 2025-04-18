@@ -1,0 +1,76 @@
+{
+    "format_version": "1.10.0",
+    "animation_controllers": {
+        "controller.animation.mob_transition": {
+            "initial_state" : "default",
+            "states": {
+                "default":{
+                    "transitions": [
+                        {"mob_is_sleeping": "query.is_sleeping"},
+                        {"mob_is_sitting": "query.is_sitting"},
+                        {"mob_has_rider": "query.has_rider"}
+                    ],
+                    "on_entry": [
+                        "@s ck:mob_rideable",
+                        "@s ck:mob_sitable",
+                        "@s ck:mob_sleepable"
+                    ]
+                    
+                },
+                "mob_is_sleeping": {
+                    "transitions": [
+                        {"default": "!query.is_sleeping"}
+                    ],
+                    "on_entry": [
+                        "@s ck:mob_not_rideable",
+                        "@s ck:mob_not_sitable",
+                        "@s ck:ambient_sleep"
+                    ],
+                    "on_exit": [
+                        "@s ck:ambient_default"
+                    ]
+                },
+                "mob_is_sitting": {
+                    "transitions": [
+                        {"default": "!query.is_sitting"}
+                    ],
+                    "on_entry": [
+                        "@s ck:mob_not_rideable",
+                        "@s ck:mob_not_sleepable"
+                    ]
+                },
+                "mob_has_rider": {
+                    "transitions": [
+                        {"default": "!query.has_rider"}
+                    ],
+                    "on_entry": [
+                        "@s ck:mob_not_sitable",
+                        "@s ck:mob_not_sleepable"
+                    ]
+                }
+            }
+        },
+        "controller.animation.pull_player": {
+            "initial_state": "default",
+            "states": {
+                "default":{
+                    "transitions": [
+                        {"pull": "variable.random = math.random_integer(1, 10); variable.cooldown=query.life_time; return query.has_any_family('attack_1') && v.attack_time > 0.0 && v.random > 9;"}
+                    ]
+                },
+                "pull": {
+                    "transitions": [
+                        {"default": "return query.life_time - v.cooldown > 1.5;"}
+                    ],
+                    "on_entry": [
+                        "/ride @e[family=!attack_1, r=5,c=1] start_riding @s teleport_rider if_group_fits",
+                        "/playanimation @e[family=!attack_1,c=1,r=5] animation.player.dragon.carried ck 0 \"!query.is_riding\""
+                    ],
+                    "on_exit": [
+                        "/execute @e ~ ~ ~ ride @e[r=5,c=1,family=!attack_1] stop_riding"
+                    ]
+                }
+            }
+        }
+    }
+}

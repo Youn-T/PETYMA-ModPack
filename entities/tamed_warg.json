@@ -1,0 +1,19 @@
+{
+	"format_version": "1.17.0",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "ck:tamed_warg",
+			"runtime_identifier": "minecraft:arrow",
+			"is_spawnable": true,
+			"is_summonable": false,
+			"is_experimental": false
+		},
+		"components": {
+			"minecraft:projectile": {},
+			"minecraft:transformation": {
+				"into": "ck:warg<ck:mob_is_tamed>",
+				"keep_owner": true
+			}
+		}
+	}
+}

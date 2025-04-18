@@ -1,0 +1,29 @@
+{
+	"format_version": "1.12",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "ck:rune_stone_table"
+		},
+
+		"tags": ["ck_dracolyte_forge"],
+		"pattern": [
+			" E ",
+			"BFB",
+			"FFF"
+		],
+		"key": {
+			"B": {
+				"item": "minecraft:diamond"
+			},
+			"E": {
+				"item": "minecraft:nether_star"
+			},
+			"F": {
+				"item": "minecraft:obsidian"
+			}
+		},
+		"result": {
+			"item": "ck:rune_stone_table"
+		}
+	}
+}

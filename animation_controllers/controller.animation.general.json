@@ -1,0 +1,56 @@
+{
+    "format_version": "1.10.0",
+    "animation_controllers": {
+        "controller.animation.player.general": {
+            "initial_state": "default",
+            "states": {
+                "default":{
+                    "transitions": [
+                        {"alive": "query.is_alive"}
+                    ]
+                },
+                "alive": {
+                    "animations": [
+						{
+						    "mob_fly": "query.variant == 0"
+						},
+						{
+						    "grappling_hook": "query.variant == 1"
+						},
+						"dynamic_light"
+                    ],
+                    "transitions": [
+                        {"wing_off": "!query.is_riding && query.is_sheared"},
+                        {"grappling_hook": "!query.is_riding && query.variant > 0"}
+                    ]
+                },
+                "wing_off": {
+                    "on_entry": [
+						"@s ck:wing_off"
+                    ],
+                    "transitions": [
+                        {"alive": "query.is_alive"}
+                    ]
+                },
+                "grappling_hook": {
+                    "on_entry": [
+						"@s ck:grappling_hook_remove"
+                    ],
+                    "transitions": [
+                        {"alive": "query.is_alive"}
+                    ]
+                }
+            }
+        },
+        "controller.animation.wyvern.general": {
+            "initial_state": "default",
+            "states": {
+                "default":{
+                    "animations": [
+                        "grab_attack"
+                    ]
+                }
+            }
+        }
+    }
+}

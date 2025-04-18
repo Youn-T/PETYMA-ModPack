@@ -1,0 +1,1238 @@
+{
+	"format_version": "1.16.0",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "ck:fairy",
+			"is_summonable": true,
+			"is_spawnable": true
+		},
+		"component_groups": {
+			"fairy_in_jar": {
+				"minecraft:scale": {
+					"value": 0.85
+				},
+				"minecraft:block_sensor": {
+					"sensor_radius": 0.5,
+					"on_break": [{
+						"block_list": [
+							"ck:jar_block_0",
+							"ck:jar_block_1",
+							"ck:jar_block_2",
+							"ck:jar_block_3",
+							"ck:jar_block_4"
+						],
+						"on_block_broken": "ck:fairy_free"
+					}]
+				},
+				"minecraft:knockback_resistance": {
+					"value": 100,
+					"max": 100
+				},
+				"minecraft:push_through": 1,
+				"minecraft:physics": {
+					"has_collision": false,
+					"has_gravity": false
+				},
+				"minecraft:breathable": {
+					"totalSupply": 15,
+					"suffocateTime": 0,
+					"breathes_solids": true
+				},
+				"minecraft:collision_box": {
+					"width": 0.3,
+					"height": 0.3
+				},
+				"minecraft:health": {
+					"min": 1,
+					"value": 15,
+					"max": 15
+				},
+				"minecraft:movement": {
+					"value": 0.0
+				}
+			},
+			"fairy_move": {
+				"minecraft:health": {
+					"min": 0,
+					"value": 15,
+					"max": 15
+				},
+				"minecraft:movement": {
+					"value": 0.25
+				},
+				"minecraft:behavior.random_hover": {
+					"priority": 12,
+					"xz_dist": 3,
+					"y_dist": 3,
+					"y_offset": -1,
+					"interval": 20,
+					"hover_height": [1, 4]
+				},
+				"minecraft:behavior.float": {
+					"priority": 19
+				},
+				"minecraft:flying_speed": {
+					"value": 0.13
+				},
+				"minecraft:behavior.tempt": {
+					"priority": 4,
+					"speed_multiplier": 1.0,
+					"items": [
+						"yellow_flower",
+						"red_flower:6",
+						"ck:cooked_hummingbird"
+					]
+				},
+				"minecraft:breathable": {
+					"totalSupply": 15,
+					"suffocateTime": 0
+				},
+				"minecraft:collision_box": {
+					"width": 0.3,
+					"height": 0.3
+				},
+				"minecraft:physics": {},
+				"minecraft:movement.hover": {},
+				"minecraft:navigation.hover": {
+					"can_path_over_water": true,
+					"can_sink": false,
+					"can_pass_doors": false,
+					"can_path_from_air": true,
+					"avoid_water": true,
+					"avoid_damage_blocks": true,
+					"avoid_sun": false
+				},
+				"minecraft:damage_sensor": {
+					"triggers": [{
+							"on_damage": {
+								"filters": [{
+										"test": "is_family",
+										"subject": "other",
+										"value": "player"
+									},
+										{
+											"test": "has_equipment",
+											"subject": "other",
+											"operator": "==",
+											"value": "ck:jar_empty"
+										}
+								],
+								"event": "ck:fairy_catch"
+							},
+							"deals_damage": false
+						},
+						{
+							"cause": "fall",
+							"deals_damage": false
+						}
+					]
+				}
+			},
+			"skin_0": {
+				"minecraft:skin_id": {
+					"value": 0
+				}
+			},
+			"skin_1": {
+				"minecraft:skin_id": {
+					"value": 1
+				}
+			},
+			"skin_2": {
+				"minecraft:skin_id": {
+					"value": 2
+				}
+			},
+			"skin_3": {
+				"minecraft:skin_id": {
+					"value": 3
+				}
+			},
+			"skin_4": {
+				"minecraft:skin_id": {
+					"value": 4
+				}
+			},
+			"quest_accept": {
+				"minecraft:is_sheared": {}
+			},
+			"quest_0": {
+				"minecraft:mark_variant": {
+					"value": 0
+				}
+			},
+			"quest_1": {
+				"minecraft:mark_variant": {
+					"value": 1
+				}
+			},
+			"quest_2": {
+				"minecraft:mark_variant": {
+					"value": 2
+				}
+			},
+			"quest_3": {
+				"minecraft:mark_variant": {
+					"value": 3
+				}
+			},
+			"move_to_home": {
+				"minecraft:behavior.go_home": {
+					"priority": 1,
+					"speed_multiplier": 1.0,
+					"interval": 1,
+					"goal_radius": 1.2,
+					"on_home": [{
+							"filters": {
+								"any_of": [{
+										"test": "is_block",
+										"subject": "block",
+										"value": "ck:fairy_hut_one"
+									},
+									{
+										"test": "is_block",
+										"subject": "block",
+										"value": "fairy_hut_two"
+									}
+								]
+							},
+							"event": "ck:fairy_go_home",
+							"target": "block"
+						},
+						{
+							"filters": {
+								"all_of": [{
+										"test": "is_block",
+										"subject": "block",
+										"operator": "!=",
+										"value": "ck:fairy_hut_one"
+									},
+									{
+										"test": "is_block",
+										"subject": "block",
+										"operator": "!=",
+										"value": "ck:fairy_hut_two"
+									}
+								]
+							},
+							"event": "ck:find_home",
+							"target": "self"
+						}
+					],
+					"on_failed": {
+						"event": "ck:find_home",
+						"target": "self"
+					}
+				}
+			},
+			"find_home": {
+				"minecraft:behavior.move_to_block": {
+					"priority": 1,
+					"search_range": 16,
+					"search_height": 10,
+					"tick_interval": 1,
+					"goal_radius": 0.643,
+					"target_blocks": [
+						"fairy_hut_one",
+						"fairy_hut_two"
+					],
+					"on_reach": [{
+						"event": "ck:fairy_go_home",
+						"target": "block"
+					}]
+				}
+			},
+			"fairy_home_cooldown": {
+				"minecraft:timer": {
+					"time": [10, 15],
+					"looping": true,
+					"time_down_event": {
+						"event": "ck:home_cooldown",
+						"target": "self"
+					}
+				}
+			},
+			"talk_interaction": {
+				"minecraft:behavior.eat_carried_item": {
+					"priority": 2,
+					"delay_before_eating": 5
+				},
+				"minecraft:interact": {
+					"interactions": [{
+						"on_interact": {
+							"filters": {
+								"all_of": [{
+										"test": "is_family",
+										"subject": "other",
+										"value": "player"
+									},
+									{
+										"test": "is_mark_variant",
+										"value": 0
+									}
+								]
+							},
+							"event": "ck:talk_random_pick",
+							"target": "self"
+						},
+						"cooldown_after_being_attacked": 20,
+						"interact_text": "action.interact.talk"
+					}]
+				}
+			},
+			"quest_interaction": {
+				"minecraft:is_stunned": {},
+				"minecraft:interact": {
+					"interactions": [{
+							"on_interact": {
+								"filters": {
+									"all_of": [{
+											"test": "is_family",
+											"subject": "other",
+											"value": "player"
+										},
+										{
+											"test": "is_mark_variant",
+											"value": 0
+										}
+									]
+								},
+								"event": "ck:quest_random_pick",
+								"target": "self"
+							},
+							"cooldown_after_being_attacked": 20,
+							"interact_text": "action.interact.quest"
+						},
+						{
+							"on_interact": {
+								"filters": {
+									"all_of": [{
+											"test": "is_family",
+											"subject": "other",
+											"value": "player"
+										},
+										{
+											"test": "is_sneaking",
+											"subject": "other",
+											"operator": "!=",
+											"value": true
+										},
+										{
+											"test": "is_mark_variant",
+											"subject": "self",
+											"operator": "!=",
+											"value": 0
+										},
+										{
+											"test": "has_component",
+											"subject": "self",
+											"operator": "!=",
+											"value": "minecraft:is_sheared"
+										}
+									]
+								},
+								"event": "ck:quest_accept",
+								"target": "self"
+							},
+							"cooldown_after_being_attacked": 20,
+							"interact_text": "action.interact.accept"
+						},
+						{
+							"on_interact": {
+								"filters": {
+									"all_of": [{
+											"test": "is_family",
+											"subject": "other",
+											"value": "player"
+										},
+										{
+											"test": "is_sneaking",
+											"subject": "other",
+											"operator": "==",
+											"value": true
+										},
+										{
+											"test": "is_mark_variant",
+											"subject": "self",
+											"operator": "!=",
+											"value": 0
+										},
+										{
+											"test": "has_component",
+											"subject": "self",
+											"operator": "!=",
+											"value": "minecraft:is_sheared"
+										}
+									]
+								},
+								"event": "ck:quest_deny",
+								"target": "self"
+							},
+							"cooldown_after_being_attacked": 20,
+							"interact_text": "action.interact.deny"
+						},
+						{
+							"on_interact": {
+								"filters": {
+									"all_of": [{
+											"test": "is_family",
+											"subject": "other",
+											"value": "player"
+										},
+										{
+											"test": "is_sneaking",
+											"subject": "other",
+											"operator": "==",
+											"value": true
+										},
+										{
+											"test": "is_mark_variant",
+											"subject": "self",
+											"operator": "!=",
+											"value": 0
+										}
+									]
+								},
+								"event": "ck:quest_deny",
+								"target": "self"
+							},
+							"cooldown_after_being_attacked": 20,
+							"interact_text": "action.interact.abort"
+						},
+
+
+						{
+							"on_interact": {
+								"filters": {
+									"all_of": [{
+											"test": "is_family",
+											"subject": "other",
+											"value": "player"
+										},
+										{
+											"test": "has_equipment",
+											"subject": "other",
+											"operator": "==",
+											"value": "ck:cooked_hummingbird"
+										},
+										{
+											"test": "is_mark_variant",
+											"value": 1
+										}
+									]
+								},
+								"event": "ck:quest_done",
+								"target": "self"
+							},
+							"barter": true,
+							"admire": true,
+							"use_item": true,
+							"cooldown_after_being_attacked": 20,
+							"interact_text": "action.interact.submit"
+						},
+
+
+						{
+							"on_interact": {
+								"filters": {
+									"all_of": [{
+											"test": "is_family",
+											"subject": "other",
+											"value": "player"
+										},
+										{
+											"test": "has_equipment",
+											"subject": "other",
+											"operator": "==",
+											"value": "yellow_flower"
+										},
+										{
+											"test": "is_mark_variant",
+											"value": 2
+										}
+									]
+								},
+								"event": "ck:quest_done",
+								"target": "self"
+							},
+							"barter": true,
+							"admire": true,
+							"use_item": true,
+							"cooldown_after_being_attacked": 20,
+							"interact_text": "action.interact.submit"
+						},
+
+
+						{
+							"on_interact": {
+								"filters": {
+									"all_of": [{
+											"test": "is_family",
+											"subject": "other",
+											"value": "player"
+										},
+										{
+											"test": "has_equipment",
+											"subject": "other",
+											"operator": "==",
+											"value": "red_flower:6"
+										},
+										{
+											"test": "is_mark_variant",
+											"value": 3
+										}
+									]
+								},
+								"event": "ck:quest_done",
+								"target": "self"
+							},
+							"barter": true,
+							"admire": true,
+							"use_item": true,
+							"cooldown_after_being_attacked": 20,
+							"interact_text": "action.interact.submit"
+						},
+						{
+							"on_interact": {
+								"filters": {
+									"all_of": [{
+											"test": "is_family",
+											"subject": "other",
+											"value": "player"
+										},
+										{
+											"test": "is_sneaking",
+											"subject": "other",
+											"operator": "!=",
+											"value": true
+										},
+										{
+											"test": "is_mark_variant",
+											"subject": "self",
+											"operator": "!=",
+											"value": 0
+										}
+									]
+								},
+								"event": "ck:quest_resend",
+								"target": "self"
+							},
+							"cooldown_after_being_attacked": 20,
+							"interact_text": "action.interact.objective"
+						}
+					]
+				}
+			},
+			"despawn": {
+				"minecraft:instant_despawn": {}
+			}
+		},
+		"events": {
+			"minecraft:entity_spawned": {
+				"sequence": [{
+						"add": {
+							"component_groups": [
+								"quest_interaction",
+								"fairy_move"
+							]
+						}
+
+					},
+					{
+						"randomize": [{
+								"weight": 25,
+								"add": {
+									"component_groups": ["skin_0"]
+								}
+							},
+							{
+								"weight": 25,
+								"add": {
+									"component_groups": ["skin_1"]
+								}
+							},
+							{
+								"weight": 25,
+								"add": {
+									"component_groups": ["skin_2"]
+								}
+							},
+							{
+								"weight": 25,
+								"add": {
+									"component_groups": ["skin_3"]
+								}
+							},
+							{
+								"weight": 25,
+								"add": {
+									"component_groups": ["skin_4"]
+								}
+							}
+						]
+					}
+				]
+			},
+			"ck:fairy_catch": {
+				"sequence": [{
+						"filters": {
+							"test": "is_skin_id",
+							"value": 0
+						},
+						"sequence": [{
+							"run_command": {
+								"command": [
+									"gamerule sendcommandfeedback false",
+									"give @s ck:jar_0 1",
+									"gamerule sendcommandfeedback true"
+								],
+								"target": "other"
+							}
+						}]
+					},
+					{
+						"filters": {
+							"test": "is_skin_id",
+							"value": 1
+						},
+						"sequence": [{
+							"run_command": {
+								"command": [
+									"gamerule sendcommandfeedback false",
+									"give @s ck:jar_1 1",
+									"gamerule sendcommandfeedback true"
+								],
+								"target": "other"
+							}
+						}]
+					},
+					{
+						"filters": {
+							"test": "is_skin_id",
+							"value": 2
+						},
+						"sequence": [{
+							"run_command": {
+								"command": [
+									"gamerule sendcommandfeedback false",
+									"give @s ck:jar_2 1",
+									"gamerule sendcommandfeedback true"
+								],
+								"target": "other"
+							}
+						}]
+					},
+					{
+						"filters": {
+							"test": "is_skin_id",
+							"value": 3
+						},
+						"sequence": [{
+							"run_command": {
+								"command": [
+									"gamerule sendcommandfeedback false",
+									"give @s ck:jar_3 1",
+									"gamerule sendcommandfeedback true"
+								],
+								"target": "other"
+							}
+						}]
+					},
+					{
+						"filters": {
+							"test": "is_skin_id",
+							"value": 4
+						},
+						"sequence": [{
+							"run_command": {
+								"command": [
+									"gamerule sendcommandfeedback false",
+									"give @s ck:jar_4 1",
+									"gamerule sendcommandfeedback true"
+								],
+								"target": "other"
+							}
+						}]
+					},
+					{
+						"add": {
+							"component_groups": [
+								"despawn"
+							]
+						}
+					}
+				]
+			},
+			"ck:fairy_free": {
+				"remove": {
+					"component_groups": [
+						"fairy_in_jar"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"fairy_move",
+						"quest_interaction"
+					]
+				}
+			},
+			"ck:fairy_in_jar_0": {
+				"add": {
+					"component_groups": [
+						"skin_0",
+						"fairy_in_jar"
+					]
+				}
+			},
+			"ck:fairy_in_jar_1": {
+				"add": {
+					"component_groups": [
+						"skin_1",
+						"fairy_in_jar"
+					]
+				}
+			},
+			"ck:fairy_in_jar_2": {
+				"add": {
+					"component_groups": [
+						"skin_2",
+						"fairy_in_jar"
+					]
+				}
+			},
+			"ck:fairy_in_jar_3": {
+				"add": {
+					"component_groups": [
+						"skin_3",
+						"fairy_in_jar"
+					]
+				}
+			},
+			"ck:fairy_in_jar_4": {
+				"add": {
+					"component_groups": [
+						"skin_4",
+						"fairy_in_jar"
+					]
+				}
+			},
+			"ck:skin_0": {
+				"add": {
+					"component_groups": [
+						"skin_0",
+						"quest_interaction",
+						"fairy_move"
+					]
+				}
+			},
+			"ck:skin_1": {
+				"add": {
+					"component_groups": [
+						"skin_1",
+						"quest_interaction",
+						"fairy_move"
+					]
+				}
+			},
+			"ck:skin_2": {
+				"add": {
+					"component_groups": [
+						"skin_2",
+						"quest_interaction",
+						"fairy_move"
+					]
+				}
+			},
+			"ck:skin_3": {
+				"add": {
+					"component_groups": [
+						"skin_3",
+						"quest_interaction",
+						"fairy_move"
+					]
+				}
+			},
+			"ck:skin_4": {
+				"add": {
+					"component_groups": [
+						"skin_4",
+						"quest_interaction",
+						"fairy_move"
+					]
+				}
+			},
+			"ck:despawn": {
+				"add": {
+					"component_groups": ["despawn"]
+				}
+			},
+			"ck:find_home": {
+				"remove": {
+					"component_groups": ["move_to_home"]
+				},
+				"add": {
+					"component_groups": ["find_home"]
+				}
+			},
+			"ck:home_cooldown": {
+				"sequence": [{
+					"add": {
+						"component_groups": [
+							"move_to_home"
+						]
+					}
+				}]
+			},
+			"ck:remove_home": {
+				"sequence": [{
+					"remove": {
+						"component_groups": [
+							"move_to_home",
+							"find_home"
+						]
+					},
+					"add": {
+						"component_groups": [
+							"fairy_home_cooldown"
+						]
+					}
+
+				}]
+			},
+			"ck:talk_random_pick": {
+			    "run_command": {
+			        "command": [
+			            "function fairy/fairy_random_talk"
+			        ],
+			        "target":"other"
+			    }
+			},
+			"ck:quest_random_pick": {
+				"randomize": [{
+						"weight": 1,
+						"sequence": [{
+								"add": {
+									"component_groups": [
+										"quest_1"
+									]
+								}
+							},
+							{
+								"run_command": {
+									"command": [
+										"tellraw @s {\"rawtext\": [{\"translate\": \"quest.fairy.name\"},{\"translate\": \"fairy.quest.1.ask\"}]}"
+									],
+									"target": "other"
+								}
+							}
+						]
+					},
+					{
+						"weight": 1,
+						"sequence": [{
+								"add": {
+									"component_groups": [
+										"quest_2"
+									]
+								}
+							},
+							{
+								"run_command": {
+									"command": [
+										"tellraw @s {\"rawtext\": [{\"translate\": \"quest.fairy.name\"},{\"translate\": \"fairy.quest.2.ask\"}]}"
+									],
+									"target": "other"
+								}
+							}
+						]
+					},
+					{
+						"weight": 1,
+						"sequence": [{
+								"add": {
+									"component_groups": [
+										"quest_3"
+									]
+								}
+							},
+							{
+								"run_command": {
+									"command": [
+										"tellraw @s {\"rawtext\": [{\"translate\": \"quest.fairy.name\"},{\"translate\": \"fairy.quest.3.ask\"}]}"
+									],
+									"target": "other"
+								}
+							}
+						]
+					}
+				]
+			},
+			"ck:quest_accept": {
+				"sequence": [{
+						"add": {
+							"component_groups": [
+								"quest_accept"
+							]
+						}
+					},
+					{
+						"filters": {
+							"test": "is_mark_variant",
+							"value": 1
+						},
+						"sequence": [{
+							"run_command": {
+								"command": [
+									"tellraw @s {\"rawtext\": [{\"translate\": \"quest.fairy.name\"},{\"translate\": \"fairy.quest.1.objective\"}]}"
+								],
+								"target": "other"
+							}
+						}]
+					},
+					{
+						"filters": {
+							"test": "is_mark_variant",
+							"value": 2
+						},
+						"sequence": [{
+							"run_command": {
+								"command": [
+									"tellraw @s {\"rawtext\": [{\"translate\": \"quest.fairy.name\"},{\"translate\": \"fairy.quest.2.objective\"}]}"
+								],
+								"target": "other"
+							}
+						}]
+					},
+					{
+						"filters": {
+							"test": "is_mark_variant",
+							"value": 3
+						},
+						"sequence": [{
+							"run_command": {
+								"command": [
+									"tellraw @s {\"rawtext\": [{\"translate\": \"quest.fairy.name\"},{\"translate\": \"fairy.quest.3.objective\"}]}"
+								],
+								"target": "other"
+							}
+						}]
+					}
+				]
+			},
+			"ck:quest_deny": {
+				"sequence": [{
+						"remove": {
+							"component_groups": [
+								"quest_accept",
+								"quest_interaction"
+							]
+						},
+						"add": {
+							"component_groups": [
+								"quest_0",
+								"talk_interaction",
+								"fairy_home_cooldown"
+							]
+						}
+					},
+					{
+						"filters": {
+							"test": "is_mark_variant",
+							"value": 1
+						},
+						"sequence": [{
+								"filters": {
+									"test": "has_component",
+									"target": "self",
+									"operator": "==",
+									"value": "minecraft:is_sheared"
+								},
+								"run_command": {
+									"command": [
+										"tellraw @s {\"rawtext\": [{\"translate\": \"quest.fairy.name\"},{\"translate\": \"fairy.quest.1.abort\"}]}"
+									],
+									"target": "other"
+								}
+							},
+							{
+								"filters": {
+									"test": "has_component",
+									"target": "self",
+									"operator": "!=",
+									"value": "minecraft:is_sheared"
+								},
+								"run_command": {
+									"command": [
+										"tellraw @s {\"rawtext\": [{\"translate\": \"quest.fairy.name\"},{\"translate\": \"fairy.quest.1.deny\"}]}"
+									],
+									"target": "other"
+								}
+							}
+						]
+					},
+					{
+						"filters": {
+							"test": "is_mark_variant",
+							"value": 2
+						},
+						"sequence": [{
+								"filters": {
+									"test": "has_component",
+									"target": "self",
+									"operator": "==",
+									"value": "minecraft:is_sheared"
+								},
+								"run_command": {
+									"command": [
+										"tellraw @s {\"rawtext\": [{\"translate\": \"quest.fairy.name\"},{\"translate\": \"fairy.quest.2.abort\"}]}"
+									],
+									"target": "other"
+								}
+							},
+							{
+								"filters": {
+									"test": "has_component",
+									"target": "self",
+									"operator": "!=",
+									"value": "minecraft:is_sheared"
+								},
+								"run_command": {
+									"command": [
+										"tellraw @s {\"rawtext\": [{\"translate\": \"quest.fairy.name\"},{\"translate\": \"fairy.quest.2.deny\"}]}"
+									],
+									"target": "other"
+								}
+							}
+						]
+					},
+					{
+						"filters": {
+							"test": "is_mark_variant",
+							"value": 3
+						},
+						"sequence": [{
+								"filters": {
+									"test": "has_component",
+									"target": "self",
+									"operator": "==",
+									"value": "minecraft:is_sheared"
+								},
+								"run_command": {
+									"command": [
+										"tellraw @s {\"rawtext\": [{\"translate\": \"quest.fairy.name\"},{\"translate\": \"fairy.quest.3.abort\"}]}"
+									],
+									"target": "other"
+								}
+							},
+							{
+								"filters": {
+									"test": "has_component",
+									"target": "self",
+									"operator": "!=",
+									"value": "minecraft:is_sheared"
+								},
+								"run_command": {
+									"command": [
+										"tellraw @s {\"rawtext\": [{\"translate\": \"quest.fairy.name\"},{\"translate\": \"fairy.quest.3.deny\"}]}"
+									],
+									"target": "other"
+								}
+							}
+						]
+					}
+				]
+			},
+			"ck:quest_resend": {
+				"sequence": [{
+						"filters": {
+							"test": "is_mark_variant",
+							"value": 1
+						},
+						"sequence": [{
+							"run_command": {
+								"command": [
+									"tellraw @s {\"rawtext\": [{\"translate\": \"quest.fairy.name\"},{\"translate\": \"fairy.quest.1.objective\"}]}"
+								],
+								"target": "other"
+							}
+						}]
+					},
+					{
+						"filters": {
+							"test": "is_mark_variant",
+							"value": 2
+						},
+						"sequence": [{
+							"run_command": {
+								"command": [
+									"tellraw @s {\"rawtext\": [{\"translate\": \"quest.fairy.name\"},{\"translate\": \"fairy.quest.2.objective\"}]}"
+								],
+								"target": "other"
+							}
+						}]
+					},
+					{
+						"filters": {
+							"test": "is_mark_variant",
+							"value": 3
+						},
+						"sequence": [{
+							"run_command": {
+								"command": [
+									"tellraw @s {\"rawtext\": [{\"translate\": \"quest.fairy.name\"},{\"translate\": \"fairy.quest.3.objective\"}]}"
+								],
+								"target": "other"
+							}
+						}]
+					}
+				]
+			},
+			"ck:quest_done": {
+				"sequence": [{
+						"remove": {
+							"component_groups": [
+								"quest_accept",
+								"quest_interaction"
+							]
+						},
+						"add": {
+							"component_groups": [
+								"quest_0",
+								"talk_interaction",
+								"fairy_home_cooldown"
+							]
+						}
+					},
+					{
+						"filters": {
+							"test": "is_mark_variant",
+							"value": 1
+						},
+						"sequence": [{
+								"run_command": {
+									"command": [
+										"tellraw @s {\"rawtext\": [{\"translate\": \"quest.fairy.name\"},{\"translate\": \"fairy.quest.1.thanks\"}]}"
+									],
+									"target": "other"
+								}
+							},
+							{
+								"run_command": {
+									"command": [
+										"replaceitem entity @s slot.weapon.mainhand 0 ck:cooked_hummingbird 1"
+									],
+									"target": "self"
+								}
+							}
+						]
+					},
+					{
+						"filters": {
+							"test": "is_mark_variant",
+							"value": 2
+						},
+						"sequence": [{
+								"run_command": {
+									"command": [
+										"tellraw @s {\"rawtext\": [{\"translate\": \"quest.fairy.name\"},{\"translate\": \"fairy.quest.2.thanks\"}]}"
+									],
+									"target": "other"
+								}
+							},
+							{
+								"run_command": {
+									"command": [
+										"replaceitem entity @s slot.weapon.mainhand 0 yellow_flower 1"
+									],
+									"target": "self"
+								}
+							}
+						]
+					},
+					{
+						"filters": {
+							"test": "is_mark_variant",
+							"value": 3
+						},
+						"sequence": [{
+								"run_command": {
+									"command": [
+										"tellraw @s {\"rawtext\": [{\"translate\": \"quest.fairy.name\"},{\"translate\": \"fairy.quest.3.thanks\"}]}"
+									],
+									"target": "other"
+								}
+							},
+							{
+								"run_command": {
+									"command": [
+										"replaceitem entity @s slot.weapon.mainhand 0 red_flower 1 6"
+									],
+									"target": "self"
+								}
+							}
+						]
+					}
+				]
+			}
+		},
+		"components": {
+			"minecraft:type_family": {
+				"family": ["fairy"]
+			},
+			"minecraft:behavior.look_at_player": {
+				"priority": 7,
+				"look_distance": 6.0,
+				"probability": 0.02
+			},
+			"minecraft:behavior.random_look_around": {
+				"priority": 9
+			},
+			"minecraft:behavior.move_towards_home_restriction": {
+			    "priority": 2,
+			    "speed_multiplier": 1.0
+			},
+			"minecraft:home": {
+			    "restriction_radius": 8
+			},
+			"minecraft:barter": {
+				"barter_table": "loot_tables/entities/fairy.json",
+				"cooldown_after_being_attacked": 20
+			},
+			"minecraft:behavior.barter": {
+				"priority": 3
+			},
+			"minecraft:equip_item": {},
+			"minecraft:admire_item": {
+				"duration": 8,
+				"cooldown_after_being_attacked": 20
+			},
+			"minecraft:follow_range": {
+				"value": 1024
+			},
+			"minecraft:hurt_on_condition": {
+				"damage_conditions": [{
+					"filters": {
+						"test": "in_lava",
+						"subject": "self",
+						"operator": "==",
+						"value": true
+					},
+					"cause": "lava",
+					"damage_per_tick": 4
+				}]
+			},
+			"minecraft:pushable": {
+				"is_pushable": true,
+				"is_pushable_by_piston": true
+			},
+			"minecraft:jump.static": {},
+			"minecraft:can_fly": {}
+		}
+	}
+}
+/*__________________________________________________
+||                                                  ||
+||             Expansive Fantasy By:                ||
+||              Dragon Force Studio                 ||
+|| DO NOT Use or Modfiy Any Code Without Permission ||
+||__________________________________________________||*/

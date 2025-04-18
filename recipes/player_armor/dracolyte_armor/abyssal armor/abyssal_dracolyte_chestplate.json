@@ -1,0 +1,24 @@
+{
+	"format_version": "1.12",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "ck:abyssal_dracolyte_chestplate"
+		},
+
+		"tags": ["ck_dracolyte_forge"],
+		"pattern": [
+			"A A",
+			"AAA",
+			"AAA"
+		],
+		"key": {
+			"A": {
+				"item": "ck:abyssal_ingot"
+			}
+		},
+		"result": {
+			"item": "ck:abyssal_dracolyte_chestplate"
+		}
+	}
+
+}

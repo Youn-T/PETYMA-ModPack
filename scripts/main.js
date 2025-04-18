@@ -27,32 +27,32 @@ const EggPlaced = {
                 break;
 
         }
-    }//,
-    // onTick(event) {
-    //     console.log(event.block.typeId);
-    //     switch (event.block.typeId) {
-    //         case "ck:abyssal_rune_block":
-    //             event.dimension.runCommand(`summon ck:abyssal_wyvern ${event.block.center().x} ${event.block.center().y} ${event.block.center().z}`);
-    //             event.dimension.runCommand(`setblock ${event.block.center().x} ${event.block.center().y} ${event.block.center().z} ck:nest`);
-    //             break;
-    //         case "ck:poison_rune_block":
-    //             event.dimension.runCommand(`summon ck:poison_wyvern ${event.block.center().x} ${event.block.center().y} ${event.block.center().z}`);
-    //             event.dimension.runCommand(`setblock ${event.block.center().x} ${event.block.center().y} ${event.block.center().z} ck:nest`);
-    //             break;
-    //         case "ck:fire_rune_block":
-    //             event.dimension.runCommand(`summon ck:fire_wyvern ${event.block.center().x} ${event.block.center().y} ${event.block.center().z}`);
-    //             event.dimension.runCommand(`setblock ${event.block.center().x} ${event.block.center().y} ${event.block.center().z} ck:nest`);
-    //             break;
-    //         case "ck:lightning_rune_block":
-    //             event.dimension.runCommand(`summon ck:lightning_wyvern ${event.block.center().x} ${event.block.center().y} ${event.block.center().z}`);
-    //             event.dimension.runCommand(`setblock ${event.block.center().x} ${event.block.center().y} ${event.block.center().z} ck:nest`);
-    //             break;
-    //         case "ck:ice_rune_block":
-    //             event.dimension.runCommand(`summon ck:ice_wyvern ${event.block.center().x} ${event.block.center().y} ${event.block.center().z}`);
-    //             event.dimension.runCommand(`setblock ${event.block.center().x} ${event.block.center().y} ${event.block.center().z} ck:nest`);
-    //             break;
-    //     }
-    // }
+    },
+    onTick(event) {
+        console.log(event.block.typeId);
+        switch (event.block.typeId) {
+            case "ck:abyssal_rune_block":
+                event.dimension.runCommand(`summon ck:abyssal_wyvern ${event.block.center().x} ${event.block.center().y} ${event.block.center().z}`);
+                event.dimension.runCommand(`setblock ${event.block.center().x} ${event.block.center().y} ${event.block.center().z} ck:nest`);
+                break;
+            case "ck:poison_rune_block":
+                event.dimension.runCommand(`summon ck:poison_wyvern ${event.block.center().x} ${event.block.center().y} ${event.block.center().z}`);
+                event.dimension.runCommand(`setblock ${event.block.center().x} ${event.block.center().y} ${event.block.center().z} ck:nest`);
+                break;
+            case "ck:fire_rune_block":
+                event.dimension.runCommand(`summon ck:fire_wyvern ${event.block.center().x} ${event.block.center().y} ${event.block.center().z}`);
+                event.dimension.runCommand(`setblock ${event.block.center().x} ${event.block.center().y} ${event.block.center().z} ck:nest`);
+                break;
+            case "ck:lightning_rune_block":
+                event.dimension.runCommand(`summon ck:lightning_wyvern ${event.block.center().x} ${event.block.center().y} ${event.block.center().z}`);
+                event.dimension.runCommand(`setblock ${event.block.center().x} ${event.block.center().y} ${event.block.center().z} ck:nest`);
+                break;
+            case "ck:ice_rune_block":
+                event.dimension.runCommand(`summon ck:ice_wyvern ${event.block.center().x} ${event.block.center().y} ${event.block.center().z}`);
+                event.dimension.runCommand(`setblock ${event.block.center().x} ${event.block.center().y} ${event.block.center().z} ck:nest`);
+                break;
+        }
+    }
 };
 
 world.afterEvents.worldLoad.subscribe(({ blockComponentRegistry }) => {

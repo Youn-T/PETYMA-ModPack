@@ -22,17 +22,9 @@ jobs:
         run: |
           zip -r petyma_be.mcpack output
 
-      - name: Créer une release (si elle n'existe pas)
-        id: create_release
-        uses: softprops/action-gh-release@v2
+      - name: Upload zip
+        uses: actions/upload-artifact@v4
         with:
-          tag_name: v1.0.0  # Tu peux le rendre dynamique si tu veux
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Upload ZIP dans la release
-        uses: softprops/action-gh-release@v2
-        with:
-          files: petyma_be.mcpack
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          name: petyma_be
+          path: petyma_be.mcpack
+          retention-days: 7

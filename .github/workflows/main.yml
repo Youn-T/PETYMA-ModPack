@@ -1,0 +1,38 @@
+name: Build and Release ZIP
+
+on:
+  push:
+    branches:
+      - main  # ou une autre branche cible
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Préparer les fichiers
+        run: |
+          mkdir output
+          echo "Fichier exemple" > output/exemple.txt
+
+      - name: Créer une archive ZIP
+        run: |
+          zip -r petyma_be.mcpack output
+
+      - name: Créer une release (si elle n'existe pas)
+        id: create_release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.0.0  # Tu peux le rendre dynamique si tu veux
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload ZIP dans la release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: mon-archive.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

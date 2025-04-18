@@ -1,30 +1,27 @@
-name: Build and Release ZIP
+name: Build and Release Petyma.mcpack
 
 on:
   push:
-    branches:
-      - main  # ou une autre branche cible
+    tags:
+      - 'v*'  # Déclenche seulement lors des tags (ex: v1.0.0)
 
 jobs:
-  build-and-release:
+  build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Préparer les fichiers
+      - name: Créer petyma.mcpack
         run: |
-          mkdir output
-          echo "Fichier exemple" > output/exemple.txt
+          zip -r petyma.mcpack . -x ".git/*" ".github/*"
 
-      - name: Créer une archive ZIP
-        run: |
-          zip -r petyma_be.mcpack output
-
-      - name: Upload zip
-        uses: actions/upload-artifact@v4
+      - name: Créer la release
+        uses: softprops/action-gh-release@v2
         with:
-          name: petyma_be
-          path: petyma_be.mcpack
-          retention-days: 7
+          name: Release ${{ github.ref_name }}
+          tag_name: ${{ github.ref_name }}
+          files: petyma.mcpack
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

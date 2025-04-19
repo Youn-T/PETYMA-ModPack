@@ -2,13 +2,16 @@ name: Build and Release Petyma.mcpack
 
 on:
   push:
-    tags:
-      - 'v*'  # Déclenche seulement lors des tags (ex: v1.0.0)
+    branches:
+      - main
 
 jobs:
   build:
+    if: github.event.head_commit.message == 'release'
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: write
+      
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -20,8 +23,8 @@ jobs:
       - name: Créer la release
         uses: softprops/action-gh-release@v2
         with:
-          name: Release ${{ github.ref_name }}
-          tag_name: ${{ github.ref_name }}
+          name: Release - ${{ github.sha }}
+          tag_name: release-${{ github.run_number }}
           files: petyma.mcpack
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

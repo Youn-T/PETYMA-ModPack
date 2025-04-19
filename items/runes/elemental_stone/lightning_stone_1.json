@@ -1,0 +1,17 @@
+{
+	"format_version": "1.16.100",
+	"minecraft:item": {
+		"description": {
+			"identifier": "ck:lightning_stone_1",
+			"category": "Items"
+		},
+		"components": {
+			"minecraft:creative_category": {
+				"parent": "itemGroup.name.stones"
+			},
+			"minecraft:icon": {
+				"texture": "lightning_stone_1"
+			}
+		}
+	}
+}

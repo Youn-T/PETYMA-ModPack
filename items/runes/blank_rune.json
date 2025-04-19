@@ -1,0 +1,14 @@
+{
+	"format_version": "1.20.30",
+	"minecraft:item": {
+		"description": {
+			"identifier": "ck:blank_rune",
+			"category": "Items"
+		},
+		"components": {
+			"minecraft:icon": {
+				"texture": "blank_rune"
+			}
+		}
+	}
+}

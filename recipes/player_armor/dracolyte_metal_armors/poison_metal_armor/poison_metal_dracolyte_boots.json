@@ -7,13 +7,13 @@
 
 		"tags": ["ck_dracolyte_forge"],
 		"pattern": [
-			"AAA",
+			" A ",
 			"ABA",
-			"AAA"
+			" A "
 		],
 		"key": {
 			"A": {
-				"item": "ck:poison_dracolyte_crystal"
+				"item": "ck:poison_stone_1"
 			},
 			"B": {
 				"item": "ck:poison_dracolyte_boots"

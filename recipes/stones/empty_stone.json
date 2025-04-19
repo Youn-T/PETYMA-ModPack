@@ -2,25 +2,28 @@
 	"format_version": "1.12",
 	"minecraft:recipe_shaped": {
 		"description": {
-			"identifier": "ck:ice_metal_leggings"
+			"identifier": "ck:empty_stone"
 		},
 
 		"tags": ["ck_dracolyte_forge"],
 		"pattern": [
-			" A ",
 			"ABA",
-			" A "
+			"BCB",
+			"ABA"
 		],
 		"key": {
 			"A": {
-				"item": "ck:ice_stone_1"
+				"item": "minecraft:cobbled_deepslate"
 			},
 			"B": {
-				"item": "ck:ice_dracolyte_leggings"
+				"item": "minecraft:cobblestone"
+			},
+			"C": {
+				"item": "minecraft:diamond"
 			}
 		},
 		"result": {
-			"item": "ck:ice_metal_leggings"
+			"item": "ck:empty_stone"
 		}
 	}
 

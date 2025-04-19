@@ -2,12 +2,15 @@
 	"format_version": "1.20.30",
 	"minecraft:item": {
 		"description": {
-			"identifier": "ck:blank_rune",
+			"identifier": "ck:empty_stone",
 			"category": "Items"
 		},
 		"components": {
+			"minecraft:creative_category": {
+				"parent": "itemGroup.name.runes"
+			},
 			"minecraft:icon": {
-				"texture": "blank_rune"
+				"texture": "empty_stone"
 			}
 		}
 	}

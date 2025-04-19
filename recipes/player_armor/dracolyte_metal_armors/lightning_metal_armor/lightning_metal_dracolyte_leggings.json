@@ -2,25 +2,26 @@
 	"format_version": "1.12",
 	"minecraft:recipe_shaped": {
 		"description": {
-			"identifier": "ck:lightning_metal_chestplate"
+			"identifier": "ck:lightning_metal_leggings"
 		},
 
 		"tags": ["ck_dracolyte_forge"],
 		"pattern": [
-			"AAA",
+			" A ",
 			"ABA",
-			"AAA"
+			" A "
 		],
 		"key": {
 			"A": {
-				"item": "ck:lightning_dracolyte_crystal"
+				"item": "ck:lightning_stone_1"
 			},
 			"B": {
-				"item": "ck:lightning_dracolyte_chestplate"
+				"item": "ck:lightning_dracolyte_leggings"
 			}
 		},
 		"result": {
-			"item": "ck:lightning_metal_chestplate"
+			"item": "ck:lightning_metal_leggings"
 		}
 	}
+
 }

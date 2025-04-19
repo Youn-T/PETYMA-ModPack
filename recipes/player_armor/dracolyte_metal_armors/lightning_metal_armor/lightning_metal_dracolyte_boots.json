@@ -2,7 +2,7 @@
 	"format_version": "1.12",
 	"minecraft:recipe_shaped": {
 		"description": {
-			"identifier": "ck:ice_metal_leggings"
+			"identifier": "ck:lightning_metal_boots"
 		},
 
 		"tags": ["ck_dracolyte_forge"],
@@ -13,14 +13,14 @@
 		],
 		"key": {
 			"A": {
-				"item": "ck:ice_stone_1"
+				"item": "ck:lightning_stone_1"
 			},
 			"B": {
-				"item": "ck:ice_dracolyte_leggings"
+				"item": "ck:lightning_dracolyte_boots"
 			}
 		},
 		"result": {
-			"item": "ck:ice_metal_leggings"
+			"item": "ck:lightning_metal_boots"
 		}
 	}
 

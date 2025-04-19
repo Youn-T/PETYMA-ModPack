@@ -3,8 +3,8 @@
     "header":{
         "description":"",
         "name":"Petyma Modpack",
-        "uuid":"ed6ca3fd-d144-4041-8b21-6d8e542258ff",
-        "version":[1,0,0],
+        "uuid":"5a61e3a0-5e1d-4a27-ae07-ddf67397a1c7",
+        "version":[1,1,0],
         "min_engine_version": [1, 18, 0]
     },
     "modules":[

@@ -1,9 +1,9 @@
 {
     "format_version":2,
     "header":{
-        "description":"petyma's modpack",
-        "name":"Petyma Modpack",
-        "uuid":"5aad94ec-8828-492b-bc95-d17b63710ff2",
+        "description":"Le pack de comportement de Petyma (version 1.2.0)",
+        "name":"Petyma Modpack v1.2.0",
+        "uuid":"5b9d9be2-9124-423a-9719-17c04bfb8d88",
         "version":[1,2,0],
         "min_engine_version": [1, 18, 0]
     },
@@ -11,7 +11,7 @@
         {
             "description": "Example vanilla behavior pack",
             "type": "data",
-            "uuid": "b5f0ce2d-6093-4fb8-a970-0b5d59febfcf",
+            "uuid": "36b4d8ac-b1bd-45a3-928a-daa5739f48c2",
             "version": [0, 0, 1]
         },
         {
@@ -19,7 +19,7 @@
 			"type": "script",
 			"language": "javascript",
 			"entry": "scripts/main.js",
-			"uuid": "6028b8b4-ad1b-4c92-bed3-f4d857a427cf",
+			"uuid": "8a68706d-8e3e-4ecd-8430-5973a4f1e693",
 			"version": [ 1, 0, 0 ]
 		}
     ],
@@ -36,10 +36,6 @@
         {
             "module_name": "@minecraft/server-ui",
             "version": "2.0.0-beta"
-        },
-		{
-			"version": [1, 0, 0],
-			"uuid": "092b9f27-e5dc-4da4-a732-44badcbc2c89"
-		}
+        }
 	]
 }
